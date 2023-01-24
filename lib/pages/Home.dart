@@ -1,8 +1,13 @@
+import 'package:barber_shop_freestyle/services/loginService.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../fields/Button.dart';
+
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key}) : super(key: key);
+  const MyHomePage(this.login, {Key? key}) : super(key: key);
+
+  final String? login;
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -14,10 +19,15 @@ class MyHomePage extends StatefulWidget {
   // always marked "final".
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<MyHomePage> createState() => _MyHomePageState(login);
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+    var loginUsed;
+  _MyHomePageState(String? login)
+  {
+    loginUsed = login;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +57,8 @@ class _MyHomePageState extends State<MyHomePage> {
             // axis because Columns are vertical (the cross axis would be
             // horizontal).
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [Text('Esta é a tela Home')],
+            children: [Text('Esta é a tela Home com o login:'+loginUsed),
+                        Button('Logout',() async => {LoginService.logout(context)}).getElement()],
           ),
         )
     );

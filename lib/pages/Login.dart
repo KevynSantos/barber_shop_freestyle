@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../forms/LoginForm.dart';
 
 class Login extends StatelessWidget {
   const Login({Key? key}) : super(key: key);
@@ -33,6 +34,9 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
 
+  final TextEditingController _login_controller = TextEditingController();
+  final TextEditingController _password_controller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -61,7 +65,7 @@ class _LoginPageState extends State<LoginPage> {
             // axis because Columns are vertical (the cross axis would be
             // horizontal).
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [Text('Esta é a tela de login')],
+            children: new LoginForm(_login_controller, _password_controller,context).getElement()
           ),
         )
     );
