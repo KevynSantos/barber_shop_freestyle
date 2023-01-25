@@ -1,3 +1,4 @@
+import 'package:barber_shop_freestyle/pages/Register.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -29,7 +30,10 @@ class LoginForm{
       child: Table(children: [TableRow(children: [
         new InkWell(
             child: new Text('Cadastre-se',style: TextStyle(decoration: TextDecoration.underline, color: Colors.white,fontSize: 16)),
-            onTap: () => print('teste')),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) =>  new RegisterPage()),
+            )),
         new InkWell(
             child: new Text('Esqueceu sua senha',style: TextStyle(decoration: TextDecoration.underline, color: Colors.white,fontSize: 16)),
             onTap: () => print('teste'))
