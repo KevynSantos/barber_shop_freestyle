@@ -47,7 +47,7 @@ class _LoginPageState extends State<LoginPage> {
     // than having to individually change instances of widgets.
     return Scaffold(
         body: Container(
-            color: Colors.black,
+            color: Color(0xff433f3e),
             child: Center(
               // Center is a layout widget. It takes a single child and positions it
               // in the middle of the parent.
