@@ -70,7 +70,8 @@ class _LoginPageState extends State<LoginPage> {
                   children: new LoginForm(_login_controller, _password_controller,context).getElement()
               ),
             )
-        )
+        ),
+        resizeToAvoidBottomInset: false
     );
   }
 }
