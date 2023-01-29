@@ -21,27 +21,39 @@ class RegisterBloc extends StatelessWidget {
         child: BlocBuilder<RegisterCubit, int>(
           builder: (context, count) { return Column(children: [
             Center(child: Text('$count')),
-            Button(count==1?'Cancelar':'Voltar', () async => {
-              if(count == 1)
-                {
-                  Navigator.pop(context)
-                }
-              else
-                {
-                  context.read<RegisterCubit>().previous()
-                }
+            Table(
+                defaultColumnWidth: FixedColumnWidth(150.0),
+                children:  [
+                TableRow(children: [
 
-            }).getElement(),
-            Button(count==3?'Concluir':'Próximo', () async => {
-              if(count==3)
-                {
-                  Navigator.pop(context)
-                }
-              else
-                {
-                  context.read<RegisterCubit>().next()
-                }
-            }).getElement()
+                  Container(
+                    padding: EdgeInsets.only(right: 5.0,left: 5.0),
+                    child: Button(count==1?'Cancelar':'Voltar', () async => {
+                    if(count == 1)
+                      {
+                        Navigator.pop(context)
+                      }
+                    else
+                      {
+                        context.read<RegisterCubit>().previous()
+                      }
+
+                  },Size(50, 40)).getElement(),),
+                  Container(
+                    padding: EdgeInsets.only(right: 5.0,left: 5.0),
+                    child: Button(count==3?'Concluir':'Próximo', () async => {
+                      if(count==3)
+                        {
+                          Navigator.pop(context)
+                        }
+                      else
+                        {
+                          context.read<RegisterCubit>().next()
+                        }
+                    },Size(50, 40)).getElement(),
+                  )
+              ])
+            ])
           ],);
           }
         )

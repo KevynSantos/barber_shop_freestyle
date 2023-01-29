@@ -58,7 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
             // horizontal).
             mainAxisAlignment: MainAxisAlignment.center,
             children: [Text('Esta é a tela Home com o login:'+loginUsed),
-                        Button('Logout',() async => {LoginService.logout(context)}).getElement()],
+                        Button('Logout',() async => {LoginService.logout(context)},Size(280, 50)).getElement(),],
           ),
         )
     );

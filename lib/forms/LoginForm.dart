@@ -24,7 +24,7 @@ class LoginForm{
             await LoginService.setLoginInStorage(_login_controller.text, _password_controller.text),
             await LoginService.goHome(context)
 
-      }).getElement(),
+      },Size(280, 50)).getElement(),
     Container(
       padding: EdgeInsets.only(left: 100,right: 80,top: 20,bottom: 20),
       child: Table(children: [TableRow(children: [
