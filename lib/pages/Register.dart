@@ -2,6 +2,8 @@ import 'package:barber_shop_freestyle/fields/Button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../blocs/RegisterBloc.dart';
+
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
 
@@ -51,11 +53,8 @@ class _RegisterPageState extends State<RegisterPage> {
                   // horizontal).
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                              Text('Esta é a tela de Cadastro'),
-                              Button('Cancelar', () async => {
-                                Navigator.pop(context)
-                              }).getElement()
-                            ],
+                    Text('Tela de Cadastro'),
+                    RegisterBloc()],
                 ),
               )
           )
