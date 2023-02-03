@@ -44,7 +44,7 @@ class LoginForm{
             SizedBox(
               height: 40.0,
               child: new InkWell(
-                  child: Center(child: new Text('Esqueceu sua senha',style: TextStyle(decoration: TextDecoration.underline, color: Colors.black,fontSize: 20)),),
+                  child: Center(child: new Text('Esqueceu sua senha?',style: TextStyle(decoration: TextDecoration.underline, color: Colors.black,fontSize: 20)),),
                   onTap: () => print('teste'))
             )
           ]
