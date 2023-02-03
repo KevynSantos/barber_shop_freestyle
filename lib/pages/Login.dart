@@ -47,7 +47,7 @@ class _LoginPageState extends State<LoginPage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-        body: BorderAndBackgroundPage.getModel(Container(),context),
+        body: BorderAndBackgroundPage.getModel(new LoginForm(_login_controller, _password_controller,context).getElement(),context),
         resizeToAvoidBottomInset: false
     );
   }

@@ -13,7 +13,7 @@ class BorderAndBackgroundPage
   static getModel(Widget content,BuildContext context)
   {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 0),
+      margin: const EdgeInsets.only(top: 30),
       height:  MediaQuery.of(context).size.height,
       child: ListView(
         // This next line does the trick.
@@ -25,6 +25,7 @@ class BorderAndBackgroundPage
           ),
           Container(
             width: MediaQuery.of(context).size.width - 60.0,
+            height: MediaQuery.of(context).size.height,
             color: Color(0xfff8f9e7),
             child: content,
           ),

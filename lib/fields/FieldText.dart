@@ -6,19 +6,19 @@ class FieldText
 
   FieldText(String? text, TextEditingController controller){
     element = SizedBox(
-        width: 380.0,
+        width: 320.0,
         child: TextField(
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: Colors.black),
         obscureText: true,
         decoration: InputDecoration(
           enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.white), // change color you want...
+            borderSide: BorderSide(color: Colors.black), // change color you want...
           ),
           labelText: text,
-            labelStyle: TextStyle(fontSize: 13, backgroundColor: Colors.white,color: Colors.white),
-            hintStyle: TextStyle(backgroundColor: Colors.white,color: Colors.white),
+            labelStyle: TextStyle(fontSize: 13, backgroundColor: Colors.black,color: Colors.black),
+            hintStyle: TextStyle(backgroundColor: Colors.black,color: Colors.black),
             focusedBorder: const OutlineInputBorder(
-            borderSide: const BorderSide(color: Colors.white),
+            borderSide: const BorderSide(color: Colors.black),
         )
         ),
         controller: controller,
