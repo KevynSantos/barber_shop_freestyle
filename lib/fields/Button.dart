@@ -4,7 +4,7 @@ class Button {
   var element;
   Button(String text, Function function, Size size){
     final ButtonStyle style =
-    ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 20),primary: Color(0xffc7baa7),minimumSize: size);
+    ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 20),primary: Color(0xffedcc90),minimumSize: size);
     element = ElevatedButton(
       style: style,
       onPressed: ()=> function(),
