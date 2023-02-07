@@ -41,8 +41,8 @@ class RegisterBloc extends StatelessWidget {
                   },Size(50, 40)).getElement(),),
                   Container(
                     padding: EdgeInsets.only(right: 5.0,left: 5.0),
-                    child: Button(count==3?'Concluir':'Próximo', () async => {
-                      if(count==3)
+                    child: Button(count==4?'Concluir':'Próximo', () async => {
+                      if(count==4)
                         {
                           Navigator.pop(context)
                         }
