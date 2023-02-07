@@ -32,7 +32,7 @@ class _RegisterPageState extends State<RegisterPage> {
     // than having to individually change instances of widgets.
     return Scaffold(
         body: Container(
-          color: Color(0xff433f3e),
+          color: Color(0xfff8f9e7),
                 child: Center(
                 // Center is a layout widget. It takes a single child and positions it
                 // in the middle of the parent.
@@ -53,11 +53,11 @@ class _RegisterPageState extends State<RegisterPage> {
                   // horizontal).
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('Tela de Cadastro'),
                     RegisterBloc()],
                 ),
               )
-          )
+          ),
+        resizeToAvoidBottomInset: false
     );
   }
 }
