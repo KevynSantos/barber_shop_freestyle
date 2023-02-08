@@ -4,12 +4,12 @@ class FieldText
 {
   var element;
 
-  FieldText(String? text, TextEditingController controller){
+  FieldText(String? text, TextEditingController controller, bool obscureText){
     element = SizedBox(
         width: 320.0,
         child: TextField(
           style: TextStyle(color: Colors.black),
-        obscureText: true,
+        obscureText: obscureText,
         decoration: InputDecoration(
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.black), // change color you want...

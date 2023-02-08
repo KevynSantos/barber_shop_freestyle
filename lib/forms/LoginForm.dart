@@ -16,11 +16,11 @@ class LoginForm{
       Padding(padding: EdgeInsets.only(top: 20)),
       Padding( padding: EdgeInsets.only(left: 17.0,top: 20),
         child: Align(child: Text('Login',style: TextStyle(color: Colors.black)),alignment: Alignment.centerLeft,)),
-      new FieldText(null,_login_controller).getElement(),
+      new FieldText(null,_login_controller,false).getElement(),
       Padding(padding: EdgeInsets.all(10)),
       Padding( padding: EdgeInsets.only(left: 17.0),
       child: Align(child: Text('Senha',style: TextStyle(color: Colors.black)),alignment: Alignment.centerLeft,)),
-      new FieldText(null,_password_controller).getElement(),
+      new FieldText(null,_password_controller,true).getElement(),
       Padding(padding: EdgeInsets.only(top: 50)),
       new Button('Fazer Login',() async => {
             await LoginService.setLoginInStorage(_login_controller.text, _password_controller.text),
