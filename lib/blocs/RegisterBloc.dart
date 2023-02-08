@@ -18,6 +18,8 @@ final TextEditingController _data_nascimento_controller = TextEditingController(
 final TextEditingController _endereco_controller = TextEditingController();
 final TextEditingController _telefone_controller = TextEditingController();
 final TextEditingController _email_controller = TextEditingController();
+final TextEditingController _senha_controller = TextEditingController();
+final TextEditingController _confirma_senha_controller = TextEditingController();
 
 class RegisterBloc extends StatelessWidget {
   const RegisterBloc({super.key});
@@ -130,7 +132,35 @@ class RegisterBloc extends StatelessWidget {
 
                                           ),
                                         ]
-                          )
+                          ),
+                        TableRow(
+                            children: [
+                              TableCell(child: Column(
+                                children: [
+                                  Padding(
+                                      padding: const EdgeInsets.only(right: 278),
+                                      child: Text('Senha')),
+                                  FieldText(null, _senha_controller,true).getElement()
+                                ],
+                              )
+
+                              ),
+                            ]
+                        ),
+                        TableRow(
+                            children: [
+                              TableCell(child: Column(
+                                children: [
+                                  Padding(
+                                      padding: const EdgeInsets.only(right: 208),
+                                      child: Text('Confirmar Senha')),
+                                  FieldText(null, _confirma_senha_controller,true).getElement()
+                                ],
+                              )
+
+                              ),
+                            ]
+                        )
                       ]
                     )
                   ]
