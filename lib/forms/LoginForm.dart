@@ -1,6 +1,7 @@
 import 'package:barber_shop_freestyle/pages/Register.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 import '../fields/Button.dart';
 import '../fields/FieldText.dart';
@@ -16,11 +17,11 @@ class LoginForm{
       Padding(padding: EdgeInsets.only(top: 20)),
       Padding( padding: EdgeInsets.only(left: 17.0,top: 20),
         child: Align(child: Text('Login',style: TextStyle(color: Colors.black)),alignment: Alignment.centerLeft,)),
-      new FieldText(null,_login_controller,false).getElement(),
+      new FieldText(null,_login_controller,false,Null).getElement(),
       Padding(padding: EdgeInsets.all(10)),
       Padding( padding: EdgeInsets.only(left: 17.0),
       child: Align(child: Text('Senha',style: TextStyle(color: Colors.black)),alignment: Alignment.centerLeft,)),
-      new FieldText(null,_password_controller,true).getElement(),
+      new FieldText(null,_password_controller,true,Null).getElement(),
       Padding(padding: EdgeInsets.only(top: 50)),
       new Button('Fazer Login',() async => {
             await LoginService.setLoginInStorage(_login_controller.text, _password_controller.text),
