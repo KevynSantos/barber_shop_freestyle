@@ -46,7 +46,8 @@ class RegisterBloc extends StatelessWidget {
                                 Padding(
                                     padding: const EdgeInsets.only(right: 278),
                                     child: Text('Nome')),
-                                FieldText(null, _name_controller,false,Null).getElement()
+                                FieldText(null, _name_controller,false,Null).getElement(),
+                                Padding(padding: const EdgeInsets.only(top: 10)),
                               ],
                             )
 
@@ -60,7 +61,8 @@ class RegisterBloc extends StatelessWidget {
                                   Padding(
                                       padding: const EdgeInsets.only(right: 288),
                                       child: Text('CPF')),
-                                  FieldText(null, _cpf_controller,false,MaskTextInputFormatter(mask: "###.###.###-##", filter: {"#": RegExp(r'[0-9]')})).getElement()
+                                  FieldText(null, _cpf_controller,false,MaskTextInputFormatter(mask: "###.###.###-##", filter: {"#": RegExp(r'[0-9]')})).getElement(),
+                                  Padding(padding: const EdgeInsets.only(top: 10)),
                                 ],
                               )
 
@@ -74,7 +76,8 @@ class RegisterBloc extends StatelessWidget {
                                   Padding(
                                       padding: const EdgeInsets.only(right: 178),
                                       child: Text('Data de Nascimento')),
-                                  FieldText(null, _data_nascimento_controller,false,Null).getElement()
+                                  FieldText(null, _data_nascimento_controller,false,Null).getElement(),
+                                  Padding(padding: const EdgeInsets.only(top: 10)),
                                 ],
                               )
 
@@ -88,7 +91,8 @@ class RegisterBloc extends StatelessWidget {
                                   Padding(
                                       padding: const EdgeInsets.only(right: 250),
                                       child: Text('Endereço')),
-                                  FieldText(null, _endereco_controller,false,Null).getElement()
+                                  FieldText(null, _endereco_controller,false,Null).getElement(),
+                                  Padding(padding: const EdgeInsets.only(top: 10)),
                                 ],
                               )
 
@@ -102,7 +106,8 @@ class RegisterBloc extends StatelessWidget {
                                   Padding(
                                       padding: const EdgeInsets.only(right: 260),
                                       child: Text('Telefone')),
-                                  FieldText(null, _telefone_controller,false,Null).getElement()
+                                  FieldText(null, _telefone_controller,false,Null).getElement(),
+                                  Padding(padding: const EdgeInsets.only(top: 10)),
                                 ],
                               )
 
@@ -129,7 +134,8 @@ class RegisterBloc extends StatelessWidget {
                                                               Padding(
                                                                   padding: const EdgeInsets.only(right: 278),
                                                                   child: Text('E-mail')),
-                                                                          FieldText(null, _email_controller,false,Null).getElement()
+                                                                          FieldText(null, _email_controller,false,Null).getElement(),
+                                                                          Padding(padding: const EdgeInsets.only(top: 10)),
                                                       ],
                                                   )
 
@@ -143,7 +149,8 @@ class RegisterBloc extends StatelessWidget {
                                   Padding(
                                       padding: const EdgeInsets.only(right: 278),
                                       child: Text('Senha')),
-                                  FieldText(null, _senha_controller,true,Null).getElement()
+                                  FieldText(null, _senha_controller,true,Null).getElement(),
+                                  Padding(padding: const EdgeInsets.only(top: 10)),
                                 ],
                               )
 
@@ -157,7 +164,8 @@ class RegisterBloc extends StatelessWidget {
                                   Padding(
                                       padding: const EdgeInsets.only(right: 208),
                                       child: Text('Confirmar Senha')),
-                                  FieldText(null, _confirma_senha_controller,true,Null).getElement()
+                                  FieldText(null, _confirma_senha_controller,true,Null).getElement(),
+                                  Padding(padding: const EdgeInsets.only(top: 10)),
                                 ],
                               )
 
