@@ -42,6 +42,7 @@ class RegisterBloc extends StatelessWidget {
                           children: [
                             TableCell(child: Column(
                               children: [
+                                Center(child: Padding(child: Text("Para realizar o cadastro, preencha estes campos abaixo.",style: TextStyle(fontSize: 24),),padding: EdgeInsets.only(left: 35,bottom: 20,right: 10),)),
                                 Padding(
                                     padding: const EdgeInsets.only(right: 278),
                                     child: Text('Nome')),
@@ -124,6 +125,7 @@ class RegisterBloc extends StatelessWidget {
                               children: [
                                   TableCell(child: Column(
                                                       children: [
+                                                        Center(child: Padding(child: Text("Para realizar o cadastro, preencha estes campos abaixo.",style: TextStyle(fontSize: 24),),padding: EdgeInsets.only(left: 35,bottom: 20,right: 10),)),
                                                               Padding(
                                                                   padding: const EdgeInsets.only(right: 278),
                                                                   child: Text('E-mail')),
