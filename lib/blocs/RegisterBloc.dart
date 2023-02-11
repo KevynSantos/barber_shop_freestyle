@@ -21,6 +21,7 @@ final TextEditingController _telefone_controller = TextEditingController();
 final TextEditingController _email_controller = TextEditingController();
 final TextEditingController _senha_controller = TextEditingController();
 final TextEditingController _confirma_senha_controller = TextEditingController();
+final TextEditingController _codigo_email_controller = TextEditingController();
 
 class RegisterBloc extends StatelessWidget {
   const RegisterBloc({super.key});
@@ -183,7 +184,10 @@ class RegisterBloc extends StatelessWidget {
             {
               bloc = Column(
                 children: [
-                  Text('Terceiro Bloco')
+                  Center(child: Padding(child: Text("Confirme o código que foi recebido no seu e-mail.",style: TextStyle(fontSize: 24),),padding: EdgeInsets.only(left: 35,bottom: 20,right: 10),)),
+                  Center(child: Padding(child: Text("Código",style: TextStyle(fontSize: 18),),padding: EdgeInsets.only(bottom: 20),)),
+                  FieldText(null, _codigo_email_controller,false,Null).getElement(),
+                  Padding(padding: const EdgeInsets.only(top: 10)),
                 ],
               );
             }
