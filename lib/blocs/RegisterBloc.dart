@@ -1,4 +1,7 @@
 import 'package:barber_shop_freestyle/fields/FieldText.dart';
+import 'package:barber_shop_freestyle/services/camService.dart';
+import 'package:barber_shop_freestyle/utils/cam_view.dart';
+import 'package:camera/camera.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -24,7 +27,11 @@ final TextEditingController _confirma_senha_controller = TextEditingController()
 final TextEditingController _codigo_email_controller = TextEditingController();
 
 class RegisterBloc extends StatelessWidget {
-  const RegisterBloc({super.key});
+  RegisterBloc({super.key});
+
+  late CameraDescription firstCamera;
+  late CameraDescription secondCamera;
+  late CamService camService;
 
   @override
   Widget build(BuildContext context) {
@@ -196,7 +203,25 @@ class RegisterBloc extends StatelessWidget {
             {
               bloc = Column(
                 children: [
-                  Text('Quarto Bloco')
+                  Center(child: Padding(child: Text("Deseja adicionar uma foto de perfil no seu cadastro?",style: TextStyle(fontSize: 24),),padding: EdgeInsets.only(left: 35,bottom: 20,right: 10),)),
+                  Center(child: Padding(child: Text("Caso não queira, selecione em concluir",style: TextStyle(fontSize: 18),),padding: EdgeInsets.only(bottom: 20),)),
+                  Button('Tirar Foto', () async => {
+                    camService = CamService(),
+                    await camService.init(),
+                    firstCamera = camService.getFirstCamera(),
+                    secondCamera = camService.getSecondCamera(),
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) =>  CamView(
+                          firstCamera,
+                          secondCamera,
+                              (image, context) async {
+                            print(image);
+                            return true;
+                          })),
+                    )
+
+                  }, Size(50, 40)).getElement()
                 ],
               );
             }
