@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../fields/Button.dart';
+import '../fields/NavigatiorBar.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage(this.login, {Key? key}) : super(key: key);
@@ -58,7 +59,8 @@ class _MyHomePageState extends State<MyHomePage> {
             // horizontal).
             mainAxisAlignment: MainAxisAlignment.center,
             children: [Text('Esta é a tela Home com o login:'+loginUsed),
-                        Button('Logout',() async => {LoginService.logout(context)},Size(280, 50)).getElement(),],
+                        Container(child: NavigationBarCustom(),height: MediaQuery.of(context).size.height - 150,width: MediaQuery.of(context).size.width - 70),
+                        Button('Sair',() async => {LoginService.logout(context)},Size(50, 50)).getElement(),],
           ),
         )
     );
