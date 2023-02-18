@@ -38,6 +38,7 @@ dependencies:
   flutter_bloc: ^8.1.1
   mask_text_input_formatter: ^2.4.0
   camera: ^0.10.3
+  http: ^0.13.5
 
 dev_dependencies:
   flutter_test:
