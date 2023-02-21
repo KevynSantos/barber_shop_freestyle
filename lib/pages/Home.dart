@@ -58,7 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
             // axis because Columns are vertical (the cross axis would be
             // horizontal).
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [Text('Esta é a tela Home com o login:'+loginUsed),
+            children: [
                         Container(child: NavigationBarCustom(),height: MediaQuery.of(context).size.height - 150,width: MediaQuery.of(context).size.width - 70),
                         Button('Sair',() async => {LoginService.logout(context)},Size(50, 50)).getElement(),],
           ),
