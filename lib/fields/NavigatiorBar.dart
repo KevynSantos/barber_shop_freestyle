@@ -145,22 +145,22 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           BottomNavigationBarItem(
             icon: Icon(Icons.notifications),
             label: 'Avisos',
-              backgroundColor: Colors.grey
+              backgroundColor: Colors.black54
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.schedule),
             label: 'Agendamentos',
-              backgroundColor: Colors.grey
+              backgroundColor: Colors.black54
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.list),
             label: 'Histórico',
-              backgroundColor: Colors.grey
+              backgroundColor: Colors.black54
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
             label: 'Perfil',
-            backgroundColor: Colors.grey
+            backgroundColor: Colors.black54
           ),
         ],
         currentIndex: _selectedIndex,
