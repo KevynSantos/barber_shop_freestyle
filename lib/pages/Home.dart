@@ -60,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
                         Container(child: NavigationBarCustom(),height: MediaQuery.of(context).size.height - 150,width: MediaQuery.of(context).size.width - 70),
-                        Button('Sair',() async => {LoginService.logout(context)},Size(50, 50)).getElement(),],
+                      ],
           ),
         )
     );

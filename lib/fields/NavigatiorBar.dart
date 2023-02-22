@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
 
+import '../services/loginService.dart';
+import 'Button.dart';
+
 class NavigationBarCustom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return MyStatefulWidget();
+    return MyStatefulWidget(context);
   }
 }
 
 class MyStatefulWidget extends StatefulWidget {
-  const MyStatefulWidget({super.key});
-
+  const MyStatefulWidget(this.context, {super.key});
+  final BuildContext context;
   @override
-  State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
+  State<MyStatefulWidget> createState() => _MyStatefulWidgetState(this.context);
 }
 
-Widget getSimulationInformations(int index)
+Widget getSimulationInformations(int index,BuildContext context)
 {
   switch(index){
     case 0:
@@ -81,6 +84,17 @@ Widget getSimulationInformations(int index)
           )
         ],
       );
+    case 3:
+      return Column(
+        children: [
+          Padding(padding: EdgeInsets.only(bottom: 30),
+            child: Center(
+              child: Text("Perfil",style: TextStyle(fontSize: 20)),
+            ),),
+          context != null?Button('Sair',() async => {LoginService.logout(context)},Size(50, 50)).getElement():
+          Button('Sair',() async => {},Size(50, 50)).getElement()
+        ],
+      );
     default:
       return Column(
         children: [
@@ -94,15 +108,20 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static Widget object =  SingleChildScrollView(
-    scrollDirection: Axis.vertical,
-    child:
-    ListView(children: [getSimulationInformations(0)],shrinkWrap: true),
-  );
+  static Widget object = Widget as Widget;
+  final BuildContext ancestral;
+  _MyStatefulWidgetState(this.ancestral)
+  {
+    object =  SingleChildScrollView(
+      scrollDirection: Axis.vertical,
+      child:
+      ListView(children: [getSimulationInformations(0,this.ancestral)],shrinkWrap: true),
+    );
+  }
 
   void _onItemTapped(int index) async {
 
-    Widget item = getSimulationInformations(index);
+    Widget item = getSimulationInformations(index,this.ancestral);
     // requisição
     object = SingleChildScrollView(
       scrollDirection: Axis.vertical,
@@ -126,18 +145,26 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           BottomNavigationBarItem(
             icon: Icon(Icons.notifications),
             label: 'Avisos',
+              backgroundColor: Colors.grey
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.schedule),
             label: 'Agendamentos',
+              backgroundColor: Colors.grey
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.list),
             label: 'Histórico',
+              backgroundColor: Colors.grey
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Perfil',
+            backgroundColor: Colors.grey
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
+        selectedItemColor: Colors.white,
         onTap: _onItemTapped,
       ),
     );
