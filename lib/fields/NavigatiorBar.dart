@@ -106,8 +106,6 @@ Widget getSimulationInformations(int index,BuildContext context)
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static Widget object = Widget as Widget;
   final BuildContext ancestral;
   _MyStatefulWidgetState(this.ancestral)
