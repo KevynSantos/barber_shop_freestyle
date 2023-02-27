@@ -59,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
             // horizontal).
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-                        Container(child: NavigationBarCustom(),height: MediaQuery.of(context).size.height - 150,width: MediaQuery.of(context).size.width - 70),
+                        Container(child: NavigationBarCustom(),height: MediaQuery.of(context).size.height,width: MediaQuery.of(context).size.width),
                       ],
           ),
         )
