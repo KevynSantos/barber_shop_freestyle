@@ -76,6 +76,10 @@ Widget getSimulationInformations(int index,BuildContext context)
     case 3:
       return Column(
         children: [
+          CircleAvatar(
+            backgroundImage: AssetImage('assets/images/profile_test.jpg'),
+            radius: 100,
+          ),
           context != null?Button('Sair',() async => {LoginService.logout(context)},Size(50, 50)).getElement():
           Button('Sair',() async => {},Size(50, 50)).getElement()
         ],
