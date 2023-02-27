@@ -27,13 +27,13 @@ Widget getSimulationInformations(int index,BuildContext context)
         children: [
           Container(
             child: Text("18/02/2023 07:00 - Seu atendimento começa hoje às 10:00 hrs.",style: StyleText.getFontText(),),
-            height: 50,
+            height: 80,
             color: Colors.amber[200],
             width: 300,
           ),
           Container(
             child: Text("18/02/2023 09:00 - Já expirementou nosso Blend Capilar? Venha experimentar",style: StyleText.getFontText()),
-            height: 50,
+            height: 80,
             color: Colors.amber[100],
             width: 300,
           )
@@ -44,13 +44,13 @@ Widget getSimulationInformations(int index,BuildContext context)
         children: [
           Container(
             child: Text("Tesoura,Maquina e Barba - 18/02 às 10:00 hrs",style: StyleText.getFontText()),
-            height: 50,
+            height: 80,
             color: Colors.amber[200],
             width: 300,
           ),
           Container(
             child: Text("Mão,Pé e Progressiva - 24/02 às 13:00 hrs",style: StyleText.getFontText()),
-            height: 50,
+            height: 80,
             color: Colors.amber[100],
             width: 300,
           )
@@ -61,13 +61,13 @@ Widget getSimulationInformations(int index,BuildContext context)
         children: [
           Container(
             child: Text("Máquina - 04/02 às 17:00 hrs",style: StyleText.getFontText()),
-            height: 50,
+            height: 80,
             color: Colors.amber[200],
             width: 300,
           ),
           Container(
             child: Text("Reflexo - 07/01 às 15:00 hrs",style: StyleText.getFontText()),
-            height: 50,
+            height: 80,
             color: Colors.amber[100],
             width: 300,
           )
