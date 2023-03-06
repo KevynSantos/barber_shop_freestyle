@@ -147,9 +147,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         titleTextStyle: TextStyle(color: Colors.white),
           automaticallyImplyLeading: false
       ),
-      body: Center(
-        child: object,
-      ),
+      body: object,
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
