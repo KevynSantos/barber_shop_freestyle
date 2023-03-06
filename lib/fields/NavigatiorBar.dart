@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import '../services/loginService.dart';
 import '../utils/StyleText.dart';
 import 'Button.dart';
+import 'FieldTextEdit.dart';
+
+TextEditingController controller_name = TextEditingController();
 
 class NavigationBarCustom extends StatelessWidget {
   @override
@@ -79,6 +82,9 @@ Widget getSimulationInformations(int index,BuildContext context)
           CircleAvatar(
             backgroundImage: AssetImage('assets/images/profile_test.jpg'),
             radius: 100,
+          ),
+          Center(
+            child: FieldTextEdit(controller_name),
           ),
           context != null?Button('Sair',() async => {LoginService.logout(context)},Size(50, 50)).getElement():
           Button('Sair',() async => {},Size(50, 50)).getElement()
@@ -175,6 +181,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         selectedItemColor: Colors.white,
         onTap: _onItemTapped,
       ),
+        resizeToAvoidBottomInset: false
     );
   }
 }
