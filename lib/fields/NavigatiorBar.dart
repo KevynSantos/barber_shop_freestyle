@@ -105,10 +105,13 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   final BuildContext ancestral;
   _MyStatefulWidgetState(this.ancestral)
   {
-    object =  SingleChildScrollView(
-      scrollDirection: Axis.vertical,
-      child:
-      ListView(children: [getSimulationInformations(0,this.ancestral)],shrinkWrap: true),
+    object =  Center(
+      child: SingleChildScrollView(
+        reverse: true,
+        padding: EdgeInsets.all(32),
+        child:
+        ListView(children: [getSimulationInformations(0,this.ancestral)],shrinkWrap: true),
+      ),
     );
   }
 
