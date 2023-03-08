@@ -90,9 +90,9 @@ Widget getSimulationInformations(int index,BuildContext context)
           FieldTextEdit(controller_name),
           Padding(padding: EdgeInsets.only(right: 210,top: 10,bottom: 10),child: Text("E-mail:",style: StyleText.getFontText(),),),
           FieldTextEdit(controller_email),
-          Padding(padding: EdgeInsets.only(right: 200,top: 10,bottom: 10),child: Text("Telefone:",style: StyleText.getFontText(),),),
+          Padding(padding: EdgeInsets.only(right: 190,top: 10,bottom: 10),child: Text("Telefone:",style: StyleText.getFontText(),),),
           FieldTextEdit(controller_telefone),
-          Padding(padding: EdgeInsets.only(right: 120,top: 10,bottom: 10),child: Text("Dt de nascimento:",style: StyleText.getFontText(),),),
+          Padding(padding: EdgeInsets.only(right: 120,top: 10,bottom: 20),child: Text("Dt de nascimento:",style: StyleText.getFontText(),),),
           FieldTextEdit(controller_dtNascimento),
           Padding(padding: EdgeInsets.only(top: 20),child: context != null?Button('Sair',() async => {LoginService.logout(context)},Size(50, 50)).getElement():
           Button('Sair',() async => {},Size(50, 50)).getElement(),),
