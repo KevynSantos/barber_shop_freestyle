@@ -83,9 +83,7 @@ Widget getSimulationInformations(int index,BuildContext context)
             backgroundImage: AssetImage('assets/images/profile_test.jpg'),
             radius: 100,
           ),
-          Center(
-            child: FieldTextEdit(controller_name),
-          ),
+          FieldTextEdit(controller_name),
           context != null?Button('Sair',() async => {LoginService.logout(context)},Size(50, 50)).getElement():
           Button('Sair',() async => {},Size(50, 50)).getElement()
         ],

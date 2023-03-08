@@ -66,6 +66,8 @@ class _FieldTextEditMyStatefulWidgetState extends State<FieldTextEditStatefulWid
               });
             })
       ],
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center
     );
   }
 
