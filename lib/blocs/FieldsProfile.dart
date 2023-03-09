@@ -37,14 +37,14 @@ class FieldsProfileBloc extends StatelessWidget
             Padding(padding: EdgeInsets.only(right: 120,top: 10,bottom: 20),child: Text("Dt de nascimento:",style: StyleText.getFontText(),),),
             FieldTextEdit(controller_dtNascimento),
             Table(
+              defaultColumnWidth: FixedColumnWidth(100.0),
               children: [
                 TableRow(
                   children: [
                     TableCell(child: IconButton(onPressed: (){
                       context.read<FieldsProfileCubit>().next();
                     }, icon: const Icon(Icons.navigate_next))),
-                    TableCell(child: Padding(padding: EdgeInsets.only(top: 20),child: context != null?Button('Sair',() async => {LoginService.logout(context)},Size(50, 50)).getElement():
-                                            Button('Sair',() async => {},Size(50, 50)).getElement(),),)
+                    TableCell(child: IconButton(onPressed: (){LoginService.logout(context);},icon: const Icon(Icons.logout))),
                   ]
                 )
               ],
@@ -54,17 +54,19 @@ class FieldsProfileBloc extends StatelessWidget
       }
     return Column(
       children: [
-        Padding(padding: EdgeInsets.only(right: 120,top: 10,bottom: 20),child: Text("Endereço:",style: StyleText.getFontText(),),),
+        Padding(padding: EdgeInsets.only(right: 170,top: 50,bottom: 10),child: Text("Endereço:",style: StyleText.getFontText(),),),
         FieldTextEdit(controller_endereco),
+        Padding(padding: EdgeInsets.only(bottom: 60)),
         Button('Alterar senha',() async => {},Size(50, 50)).getElement(),
+        Padding(padding: EdgeInsets.only(bottom: 60)),
         Table(
+          defaultColumnWidth: FixedColumnWidth(100.0),
           children: [
             TableRow(children: [
               TableCell(child: IconButton(onPressed: (){
                 context.read<FieldsProfileCubit>().previous();
               }, icon: const Icon(Icons.navigate_before)),),
-              TableCell(child: Padding(padding: EdgeInsets.only(top: 20),child: context != null?Button('Sair',() async => {LoginService.logout(context)},Size(50, 50)).getElement():
-              Button('Sair',() async => {},Size(50, 50)).getElement(),),)
+              TableCell(child: IconButton(onPressed: (){LoginService.logout(context);},icon: const Icon(Icons.logout)))
             ])
           ],
         )
