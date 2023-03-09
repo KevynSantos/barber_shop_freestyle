@@ -156,6 +156,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xfff8f9e7),
       appBar: AppBar(
         title: Text(getTitleFromTab(_selectedIndex),style: TextStyle(fontSize: 20)),
         backgroundColor: Colors.black54,
