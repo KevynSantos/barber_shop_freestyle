@@ -17,15 +17,16 @@ class FieldsProfileCubit extends Cubit<int>
 
 class FieldsProfileBloc extends StatelessWidget
 {
-  TextEditingController controller_name = TextEditingController();
-  TextEditingController controller_email = TextEditingController();
-  TextEditingController controller_telefone = TextEditingController();
-  TextEditingController controller_dtNascimento = TextEditingController();
-  TextEditingController controller_endereco = TextEditingController();
+
+
   getFieldsProfile(int count,BuildContext context)
   {
     if(count == 1)
       {
+        TextEditingController controller_name = TextEditingController();
+        TextEditingController controller_email = TextEditingController();
+        TextEditingController controller_telefone = TextEditingController();
+        TextEditingController controller_dtNascimento = TextEditingController();
         return Column(
           children: [
             Padding(padding: EdgeInsets.only(right: 210,bottom: 10),child: Text("Nome:",style: StyleText.getFontText(),),),
@@ -52,10 +53,26 @@ class FieldsProfileBloc extends StatelessWidget
           ],
         );
       }
+    TextEditingController controller_endereco = TextEditingController();
     return Column(
       children: [
         Padding(padding: EdgeInsets.only(right: 170,top: 50,bottom: 10),child: Text("Endereço:",style: StyleText.getFontText(),),),
-        FieldTextEdit(controller_endereco),
+        Row(
+          children: [
+            Container(
+              width: 200,child:
+            TextField(controller: controller_endereco,
+            ),
+            ),
+            IconButton(
+                icon: Icon(Icons.update),
+                onPressed: () {
+
+                })
+          ],
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center
+        ),
         Padding(padding: EdgeInsets.only(bottom: 60)),
         Button('Alterar senha',() async => {},Size(50, 50)).getElement(),
         Padding(padding: EdgeInsets.only(bottom: 60)),
