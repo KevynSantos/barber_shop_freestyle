@@ -29,7 +29,8 @@ class MyApp extends StatelessWidget {
         future: checkLogin(), // a previously-obtained Future<String> or null
         builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
           return MaterialApp(
-              home: existsLogin?MyHomePage(login):Login()
+              home: existsLogin?MyHomePage(login):Login(),
+              debugShowCheckedModeBanner: false
           );
         }
 

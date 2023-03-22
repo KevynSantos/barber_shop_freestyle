@@ -11,7 +11,8 @@ class Login extends StatelessWidget {
   Widget build(BuildContext context) {
 
           return MaterialApp(
-              home: const LoginPage()
+              home: const LoginPage(),
+              debugShowCheckedModeBanner: false
           );
 
   }
