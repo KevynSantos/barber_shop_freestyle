@@ -89,6 +89,7 @@ class LoginService{
     if(response.statusCode != 200)
       {
         toast.showMessageError("Ocorreu um erro inesperado");
+        return false;
       }
     final responseJson = json.decode(response.body);
     var code = responseJson['code'];
