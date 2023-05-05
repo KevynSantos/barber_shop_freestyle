@@ -1,0 +1,1 @@
+const host = "http://191.252.194.226:8080/BarberShopFreeStyle";

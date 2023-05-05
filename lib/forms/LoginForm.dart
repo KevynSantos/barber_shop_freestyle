@@ -24,8 +24,11 @@ class LoginForm{
       new FieldText(null,_password_controller,true,Null).getElement(),
       Padding(padding: EdgeInsets.only(top: 50)),
       new Button('Fazer Login',() async => {
-            await LoginService.setLoginInStorage(_login_controller.text, _password_controller.text),
-            await LoginService.goHome(context)
+            if(await LoginService.login(_login_controller.text, _password_controller.text))
+              {
+                await LoginService.goHome(context)
+              }
+
 
       },Size(280, 50)).getElement(),
     Container(

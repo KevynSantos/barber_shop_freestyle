@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 doPost(String url, String path , Map<String, String> header, Map<String,String> requestBody)
 {
   final response =  http.post(
-    Uri.http(url,path),
+    Uri.parse(url+path),
     headers: header,
     body: requestBody,
   );
