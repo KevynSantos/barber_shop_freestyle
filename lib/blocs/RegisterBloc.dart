@@ -7,7 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
+import '../dtos/registerDto.dart';
 import '../fields/Button.dart';
+import '../services/registerService.dart';
 
 class RegisterCubit extends Cubit<int> {
   RegisterCubit() : super(1);
@@ -32,6 +34,21 @@ class RegisterBloc extends StatelessWidget {
   late CameraDescription firstCamera;
   late CameraDescription secondCamera;
   late CamService camService;
+
+  static buildDto()
+  {
+    RegisterDto dto = new RegisterDto();
+    dto.setName(_name_controller.text.toString());
+    dto.setCpf(_cpf_controller.text.toString());
+    dto.setAdress(_data_nascimento_controller.text.toString());
+    dto.setPhone(_telefone_controller.text.toString());
+    dto.setDateNasc(_data_nascimento_controller.text.toString());
+    dto.setConfirmCodeEmail(_codigo_email_controller.text.toString());
+    dto.setPassword(_senha_controller.text.toString());
+    dto.setEmail(_email_controller.text.toString());
+    dto.setConfirmCodeEmail(_codigo_email_controller.text.toString());
+    return dto;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -248,7 +265,22 @@ class RegisterBloc extends StatelessWidget {
                   Container(
                     padding: EdgeInsets.only(right: 5.0,left: 5.0),
                     child: Button(count==4?'Concluir':'Próximo', () async => {
-                      if(count==4)
+                      if(count==2)
+                        {
+                          if(await RegisterService.sendCodeVerificationEmail(await buildDto(), context))
+                            {
+                              context.read<RegisterCubit>().next()
+                            }
+                        }
+                      else if(count==3)
+                        {
+                          if(await RegisterService.tryconfirmCodeEmailAndSaveRegister(await buildDto(), context))
+                            {
+                              context.read<RegisterCubit>().next()
+                            }
+
+                        }
+                      else if(count==4)
                         {
                           Navigator.pop(context)
                         }

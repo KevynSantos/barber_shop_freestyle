@@ -1,1 +1,1 @@
-const host = "http://191.252.194.226:8080/BarberShopFreeStyle";
+const host = "http://192.168.0.152:8080/BarberShopFreeStyle";

@@ -16,7 +16,7 @@ class LoginForm{
       Align(child: Column(children: [Text('Barber Shop FreeStyle',style: TextStyle(color: Colors.black,fontSize: 26,fontWeight: FontWeight.bold,fontFamily: 'Fantasy')),Container(child: Image.asset('assets/images/BarberShopFreeStyle-logo-semFundo.png',width: 80,height: 80,),margin:  const EdgeInsets.only(left: 10.0, right: 0.0),)],),alignment: Alignment.center,),
       Padding(padding: EdgeInsets.only(top: 20)),
       Padding( padding: EdgeInsets.only(left: 17.0,top: 20),
-        child: Align(child: Text('Login',style: TextStyle(color: Colors.black)),alignment: Alignment.centerLeft,)),
+        child: Align(child: Text('E-mail',style: TextStyle(color: Colors.black)),alignment: Alignment.centerLeft,)),
       new FieldText(null,_login_controller,false,Null).getElement(),
       Padding(padding: EdgeInsets.all(10)),
       Padding( padding: EdgeInsets.only(left: 17.0),
