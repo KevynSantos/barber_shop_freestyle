@@ -23,8 +23,7 @@ class RegisterService
   async {
 
     Map<String,String> head = new HashMap();
-    String jsonRegister = jsonEncode(dto);
-    Map<String,String> requestBody = json.decode(jsonRegister);
+    Map<String,String> requestBody = dto.getJson();
     final response = await http.doPost(config.host,'/api/register/user',head,requestBody);
 
     if(response.statusCode != 200)
@@ -49,8 +48,7 @@ class RegisterService
   async {
 
     Map<String,String> head = new HashMap();
-    String jsonRegister = jsonEncode(dto);
-    Map<String,String> requestBody = json.decode(jsonRegister);
+    Map<String,String> requestBody = dto.getJson();
     final response = await http.doPost(config.host,'/api/register/confirmCodeEmail',head,requestBody);
 
     if(response.statusCode != 200)
