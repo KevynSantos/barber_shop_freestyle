@@ -9,15 +9,16 @@ import '../utils/toast.dart' as toast;
 
 class PaginationListBuilder extends StatefulWidget
 {
-  const PaginationListBuilder(this.url,this.pageName,this.locator,this.requestBody,{Key? key}): super(key: key);
+  const PaginationListBuilder(this.url,this.pageName,this.locator,this.requestBody,this.callBackCard,{Key? key}): super(key: key);
 
   final String? url;
   final String? pageName;
   final String? locator;
   final Map<String,String> requestBody;
+  final Function callBackCard;
 
   @override
-  State<PaginationListBuilder> createState() => _PaginationListBuilder(url,pageName!,locator!,requestBody!);
+  State<PaginationListBuilder> createState() => _PaginationListBuilder(url,pageName!,locator!,requestBody!,callBackCard);
   
 }
 
@@ -27,7 +28,8 @@ class _PaginationListBuilder extends State<PaginationListBuilder>
   final String pageName;
   final String locator;
   final Map<String,String> requestBody;
-  _PaginationListBuilder(this.url, this.pageName, this.locator, this.requestBody)
+  final Function callBackCard;
+  _PaginationListBuilder(this.url, this.pageName, this.locator, this.requestBody, this.callBackCard)
   {
 
   }
@@ -59,11 +61,7 @@ class _PaginationListBuilder extends State<PaginationListBuilder>
               {
                 var post = posts[index];
                 return Card(
-                  child: ListTile(
-                      leading: CircleAvatar(child: Text('${index + 1}'),),
-                      title: Text(post.toString(),maxLines: 1),
-                      //subtitle: Text("Subtitulo teste",maxLines: 2,)
-                  ),
+                  child: callBackCard(index,post),
                 );
               }
             else

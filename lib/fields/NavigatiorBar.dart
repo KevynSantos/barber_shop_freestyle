@@ -123,7 +123,18 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         requestBody.addAll({'idUser':idUser.toString(),
           'text_data_inicial':now,'text_data_final':now,
         'text_hora_inicial':'','text_hora_final':''});
-        object = PaginationListBuilder("/api/scheduling/list/","Agendamentos","agendamentos",requestBody);
+        object = PaginationListBuilder("/api/scheduling/list/",
+            "Agendamentos",
+            "agendamentos",
+            requestBody,
+                (index, post) {
+                  return ListTile(
+                    leading: CircleAvatar(child: Text('${index + 1}'),),
+                    title: Text(post.toString(),maxLines: 1),
+                    //subtitle: Text("Subtitulo teste",maxLines: 2,)
+                  );
+            }
+        );
       }
     else {
       object = SingleChildScrollView(
