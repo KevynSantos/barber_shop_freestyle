@@ -54,6 +54,13 @@ class LoginService{
     await session.set('idUser', idUser);
   }
 
+  static getIdUser() async
+  {
+    SecureStorage session = SecureStorage();
+
+    return await session.get("idUser");
+  }
+
   static goHome(BuildContext context) async
   {
     var loginData = await hasLoginInStorage();

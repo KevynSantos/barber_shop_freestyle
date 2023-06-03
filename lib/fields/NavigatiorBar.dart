@@ -1,9 +1,13 @@
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
 
 import '../blocs/FieldsProfile.dart';
 import '../services/loginService.dart';
+import '../templates/PaginationListBuilder.dart';
 import '../utils/StyleText.dart';
 import 'Button.dart';
+import '../utils/DateFormatStr.dart' as date;
 
 class NavigationBarCustom extends StatelessWidget {
   @override
@@ -111,11 +115,25 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
     Widget item = getSimulationInformations(index,this.ancestral);
     // requisição
-    object = SingleChildScrollView(
-      scrollDirection: Axis.vertical,
-      child:
-      ListView(children: [item],shrinkWrap: true, padding: const EdgeInsets.all(8)),
-    );
+    if(index == 1)
+      {
+        Map<String,String> requestBody = new HashMap();
+        String? idUser = await LoginService.getIdUser();
+        String now = date.getDateFormat();
+        requestBody.addAll({'idUser':idUser.toString(),
+          'text_data_inicial':now,'text_data_final':now,
+        'text_hora_inicial':'','text_hora_final':''});
+        object = PaginationListBuilder("/api/scheduling/list/","Agendamentos","agendamentos",requestBody);
+      }
+    else {
+      object = SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child:
+        ListView(children: [item],
+            shrinkWrap: true,
+            padding: const EdgeInsets.all(8)),
+      );
+    }
 
     setState(() {
       _selectedIndex = index;

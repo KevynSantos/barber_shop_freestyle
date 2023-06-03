@@ -1,17 +1,36 @@
+import 'dart:collection';
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../utils/HttpService.dart' as http;
+import '../config.dart' as config;
+import '../utils/toast.dart' as toast;
 
 class PaginationListBuilder extends StatefulWidget
 {
-  const PaginationListBuilder({Key? key}): super(key: key);
+  const PaginationListBuilder(this.url,this.pageName,this.locator,this.requestBody,{Key? key}): super(key: key);
+
+  final String? url;
+  final String? pageName;
+  final String? locator;
+  final Map<String,String> requestBody;
 
   @override
-  State<PaginationListBuilder> createState() => _PaginationListBuilder();
+  State<PaginationListBuilder> createState() => _PaginationListBuilder(url,pageName!,locator!,requestBody!);
   
 }
 
 class _PaginationListBuilder extends State<PaginationListBuilder>
 {
+  final String? url;
+  final String pageName;
+  final String locator;
+  final Map<String,String> requestBody;
+  _PaginationListBuilder(this.url, this.pageName, this.locator, this.requestBody)
+  {
+
+  }
   final scrollController = ScrollController();
   bool isLoadingMore = false;
   List posts = [];
@@ -30,7 +49,7 @@ class _PaginationListBuilder extends State<PaginationListBuilder>
     // TODO: implement build
     return Scaffold(
       backgroundColor: Colors.grey.shade200,
-      appBar: AppBar(title: Text("Paginação exemplo")),
+      appBar: AppBar(title: Text(this.pageName)),
       body: ListView.builder(
           padding: EdgeInsets.all(12.0),
           controller: scrollController,
@@ -43,7 +62,7 @@ class _PaginationListBuilder extends State<PaginationListBuilder>
                   child: ListTile(
                       leading: CircleAvatar(child: Text('${index + 1}'),),
                       title: Text(post.toString(),maxLines: 1),
-                      subtitle: Text("Subtitulo teste",maxLines: 2,)
+                      //subtitle: Text("Subtitulo teste",maxLines: 2,)
                   ),
                 );
               }
@@ -58,14 +77,29 @@ class _PaginationListBuilder extends State<PaginationListBuilder>
   Future<void> fetchPosts() async{
       //aqui fica a requisição
 
-    var url = '$page';
+    Map<String,String> header = new HashMap();
 
-    print('$url');
+    requestBody.addAll({'pageNumber':page.toString(),'pageSize':"10"});
 
-    var jsonExample = [{"cities":["New York","Bangalore","San Francisco"],"name":"Pankaj Kumar","age":32}];
+    final response = await http.doGet(config.host, url!, header, requestBody);
+
+    if(response.statusCode != 200)
+    {
+      toast.showMessageError("Ocorreu um erro inesperado");
+      return;
+    }
+    final responseJson = json.decode(response.body);
+    var code = responseJson['code'];
+    if(code != 'SUCCESS') {
+      var messageError = responseJson['message'];
+      toast.showMessageError(messageError);
+      return;
+    }
+
+    var content = responseJson[this.locator];
 
     setState(() {
-        posts = posts + jsonExample;
+        posts = posts + content;
     });
   }
 

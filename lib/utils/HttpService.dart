@@ -16,6 +16,10 @@ doGet(String url, String path , Map<String, String> header, Map<String,String> p
   var parametersStr = new StringBuffer();
   int size = parameters.length;
   int count = 0;
+  if(size > 0)
+    {
+      parametersStr.write("?");
+    }
   parameters.forEach((key, value) {
     if(count == size)
     {
@@ -29,7 +33,7 @@ doGet(String url, String path , Map<String, String> header, Map<String,String> p
   });
 
   final response =  http.get(
-    Uri.http(url,path+parametersStr.toString()),
+    Uri.parse(url+path+parametersStr.toString()),
     headers: header,
   );
 
