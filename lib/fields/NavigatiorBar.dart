@@ -124,14 +124,16 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           'text_data_inicial':now,'text_data_final':now,
         'text_hora_inicial':'','text_hora_final':''});
         object = PaginationListBuilder("/api/scheduling/list/",
-            "Agendamentos",
             "agendamentos",
             requestBody,
                 (index, post) {
+                  var date = post['data'];
+                  var hour = post['hora'];
+                  var nomeFuncionario = post['nomeFuncionario'];
+                  var pedidos = post['pedidos'];
                   return ListTile(
-                    leading: CircleAvatar(child: Text('${index + 1}'),),
-                    title: Text(post.toString(),maxLines: 1),
-                    //subtitle: Text("Subtitulo teste",maxLines: 2,)
+                    title: Text(date.toString()+" "+hour.toString(),maxLines: 1),
+                    subtitle: Text("Funcionário: "+nomeFuncionario.toString()+"\n"+"Pedidos: "+pedidos.toString(),maxLines: 2,)
                   );
             }
         );

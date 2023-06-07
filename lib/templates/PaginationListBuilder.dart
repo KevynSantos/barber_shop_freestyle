@@ -9,27 +9,25 @@ import '../utils/toast.dart' as toast;
 
 class PaginationListBuilder extends StatefulWidget
 {
-  const PaginationListBuilder(this.url,this.pageName,this.locator,this.requestBody,this.callBackCard,{Key? key}): super(key: key);
+  const PaginationListBuilder(this.url,this.locator,this.requestBody,this.callBackCard,{Key? key}): super(key: key);
 
   final String? url;
-  final String? pageName;
   final String? locator;
   final Map<String,String> requestBody;
   final Function callBackCard;
 
   @override
-  State<PaginationListBuilder> createState() => _PaginationListBuilder(url,pageName!,locator!,requestBody!,callBackCard);
+  State<PaginationListBuilder> createState() => _PaginationListBuilder(url,locator!,requestBody!,callBackCard);
   
 }
 
 class _PaginationListBuilder extends State<PaginationListBuilder>
 {
   final String? url;
-  final String pageName;
   final String locator;
   final Map<String,String> requestBody;
   final Function callBackCard;
-  _PaginationListBuilder(this.url, this.pageName, this.locator, this.requestBody, this.callBackCard)
+  _PaginationListBuilder(this.url, this.locator, this.requestBody, this.callBackCard)
   {
 
   }
@@ -50,8 +48,7 @@ class _PaginationListBuilder extends State<PaginationListBuilder>
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-      backgroundColor: Colors.grey.shade200,
-      appBar: AppBar(title: Text(this.pageName)),
+      backgroundColor: Color(0xfff8f9e7),
       body: ListView.builder(
           padding: EdgeInsets.all(12.0),
           controller: scrollController,
@@ -96,8 +93,13 @@ class _PaginationListBuilder extends State<PaginationListBuilder>
 
     var content = responseJson[this.locator];
 
+    List newContent = [];
+
+    newContent.addAll(posts);
+    newContent.addAll(content);
+
     setState(() {
-        posts = posts + content;
+        posts = newContent;
     });
   }
 
