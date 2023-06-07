@@ -124,6 +124,13 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           'text_data_inicial':now,'text_data_final':now,
         'text_hora_inicial':'','text_hora_final':''});
         object = PaginationListBuilder("/api/scheduling/list/",
+            FloatingActionButton(
+              onPressed: () {
+                // Add your onPressed code here!
+              },
+              backgroundColor: Colors.orange,
+              child: const Icon(Icons.add),
+            ),
             "agendamentos",
             requestBody,
                 (index, post) {
@@ -133,7 +140,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   var pedidos = post['pedidos'];
                   return ListTile(
                     title: Text(date.toString()+" "+hour.toString(),maxLines: 1),
-                    subtitle: Text("Funcionário: "+nomeFuncionario.toString()+"\n"+"Pedidos: "+pedidos.toString(),maxLines: 2,)
+                    subtitle: Text("Funcionário: "+nomeFuncionario.toString()+"\n"+"Pedidos: "+pedidos.toString(),maxLines: 3,)
                   );
             }
         );
