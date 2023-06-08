@@ -3,6 +3,7 @@ import 'dart:collection';
 import 'package:flutter/material.dart';
 
 import '../blocs/FieldsProfile.dart';
+import '../pages/NewScheduling.dart';
 import '../services/loginService.dart';
 import '../templates/PaginationListBuilder.dart';
 import '../utils/StyleText.dart';
@@ -126,7 +127,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         object = PaginationListBuilder("/api/scheduling/list/",
             FloatingActionButton(
               onPressed: () {
-                // Add your onPressed code here!
+                Navigator.push(context, MaterialPageRoute(builder: (context) =>  new NewSchedulingPage()),);
               },
               backgroundColor: Colors.orange,
               child: const Icon(Icons.add),
