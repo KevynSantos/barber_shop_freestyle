@@ -178,6 +178,26 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
   }
 
+  getSourceByIndex(int index)
+  {
+    if(index == 1)
+      {
+        return <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.search,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              // do something
+            },
+          )
+        ];
+      }
+
+    return <Widget>[];
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -186,7 +206,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         title: Text(getTitleFromTab(_selectedIndex),style: TextStyle(fontSize: 20)),
         backgroundColor: Colors.black54,
         titleTextStyle: TextStyle(color: Colors.white),
-          automaticallyImplyLeading: false
+          automaticallyImplyLeading: false,
+        actions: getSourceByIndex(_selectedIndex)
       ),
       body: object,
       bottomNavigationBar: BottomNavigationBar(
