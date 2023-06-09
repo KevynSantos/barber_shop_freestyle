@@ -3,6 +3,7 @@ import 'dart:collection';
 import 'package:flutter/material.dart';
 
 import '../blocs/FieldsProfile.dart';
+import '../filters/SchedulingFilter.dart';
 import '../pages/NewScheduling.dart';
 import '../services/loginService.dart';
 import '../templates/PaginationListBuilder.dart';
@@ -178,7 +179,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
   }
 
-  getSourceByIndex(int index)
+  getSourceByIndex(int index, Widget object)
   {
     if(index == 1)
       {
@@ -190,6 +191,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             ),
             onPressed: () {
               // do something
+              Navigator.push(context,MaterialPageRoute(builder: (context) =>  new SchedulingFilter(object)),);
             },
           )
         ];
@@ -207,7 +209,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         backgroundColor: Colors.black54,
         titleTextStyle: TextStyle(color: Colors.white),
           automaticallyImplyLeading: false,
-        actions: getSourceByIndex(_selectedIndex)
+        actions: getSourceByIndex(_selectedIndex,object)
       ),
       body: object,
       bottomNavigationBar: BottomNavigationBar(

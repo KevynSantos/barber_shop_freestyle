@@ -9,16 +9,25 @@ import '../utils/toast.dart' as toast;
 
 class PaginationListBuilder extends StatefulWidget
 {
-  const PaginationListBuilder(this.url,this.floatingActionButton,this.locator,this.requestBody,this.callBackCard,{Key? key}): super(key: key);
+  PaginationListBuilder(this.url,this.floatingActionButton,this.locator,this.requestBody,this.callBackCard,{Key? key}): super(key: key);
 
   final String? url;
   final String? locator;
   final Map<String,String> requestBody;
   final Function callBackCard;
   final FloatingActionButton floatingActionButton;
+  late _PaginationListBuilder _stateForRefreash;
 
   @override
-  State<PaginationListBuilder> createState() => _PaginationListBuilder(url,floatingActionButton,locator!,requestBody!,callBackCard);
+  State<PaginationListBuilder> createState(){
+    _stateForRefreash = _PaginationListBuilder(url,floatingActionButton,locator!,requestBody!,callBackCard);
+    return _stateForRefreash;
+  }
+
+  refrsh()
+  {
+    _stateForRefreash.refresh();
+  }
   
 }
 
@@ -119,6 +128,24 @@ class _PaginationListBuilder extends State<PaginationListBuilder>
           isLoadingMore = false;
         });
       }
+
+  }
+
+  Future<void> refresh()
+  async {
+    setState(() {
+      isLoadingMore = true;
+    });
+
+    page = 1;
+    posts = [];
+
+
+    await fetchPosts();
+
+    setState(() {
+      isLoadingMore = false;
+    });
 
   }
 
