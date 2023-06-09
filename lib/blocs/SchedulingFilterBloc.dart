@@ -3,6 +3,7 @@ import 'dart:collection';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:localstorage/localstorage.dart';
 
 import '../fields/Button.dart';
@@ -80,7 +81,7 @@ class SchedulingFilterBloc extends StatelessWidget {
                       onPressed: () {
                         showDatePicker(
                             context: buildContext,
-                            initialDate: DateTime.now(),
+                            initialDate: storage.getItem('text_data_inicial') == Null?DateTime.now():DateFormat('dd/MM/yyyy').parse(storage.getItem('text_data_inicial')),
                             firstDate: DateTime(2000),
                             lastDate: DateTime(2030)
                         ).then((value) async =>{
@@ -109,7 +110,7 @@ class SchedulingFilterBloc extends StatelessWidget {
                       onPressed: () {
                         showDatePicker(
                             context: buildContext,
-                            initialDate: DateTime.now(),
+                            initialDate: storage.getItem('text_data_final') == Null?DateTime.now():DateFormat('dd/MM/yyyy').parse(storage.getItem('text_data_final')) ,
                             firstDate: DateTime(2000),
                             lastDate: DateTime(2030)
                         ).then((value) async =>{
