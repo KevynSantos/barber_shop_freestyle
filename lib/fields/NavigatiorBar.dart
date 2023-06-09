@@ -123,6 +123,10 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         Map<String,String> requestBody = new HashMap();
         String? idUser = await LoginService.getIdUser();
         final LocalStorage storage = new LocalStorage('filter_scheduling');
+        await storage.ready;
+        var now = date.getDateFormat();
+        await storage.setItem('text_data_inicial',now);
+        await storage.setItem('text_data_final',now);
         requestBody.addAll({'idUser':idUser.toString(),'text_data_inicial': await storage.getItem('text_data_inicial'),'text_data_final':await storage.getItem('text_data_final')});
         object = PaginationListBuilder("/api/scheduling/list/",
             FloatingActionButton(

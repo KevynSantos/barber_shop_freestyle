@@ -93,6 +93,7 @@ class SchedulingFilterBloc extends StatelessWidget {
                             lastDate: DateTime(2030)
                         ).then((value) async =>{
                           dateInit = parseDateFormat(value as DateTime),
+                          await storage.ready,
                           await storage.setItem('text_data_inicial', dateInit),
                           context.read<SchedulingFilterCubit>().update()
                         });
@@ -129,6 +130,7 @@ class SchedulingFilterBloc extends StatelessWidget {
                             lastDate: DateTime(2030)
                         ).then((value) async =>{
                           dateEnd = parseDateFormat(value as DateTime),
+                          await storage.ready,
                           await storage.setItem('text_data_final', dateEnd),
                           context.read<SchedulingFilterCubit>().update()
                         });
