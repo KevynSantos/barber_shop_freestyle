@@ -144,7 +144,7 @@ class _PaginationListBuilder extends State<PaginationListBuilder>
     page = 1;
     posts = [];
 
-    this.filter.clear();
+    this.filter = new HashMap();
     this.filter = filter;
 
     await fetchPosts(filter);

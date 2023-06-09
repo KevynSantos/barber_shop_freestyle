@@ -3,6 +3,7 @@ import 'dart:collection';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:localstorage/localstorage.dart';
 
 import '../fields/Button.dart';
 import '../templates/PaginationListBuilder.dart';
@@ -18,13 +19,13 @@ class SchedulingFilterCubit extends Cubit<int>
   
 }
 
-String dateInit = getDateFormat();
-String dateEnd = getDateFormat();
-
 Map<String,String> body = new HashMap();
 
 class SchedulingFilterBloc extends StatelessWidget {
   late PaginationListBuilder ancestral;
+  late String dateInit = getDateFormat();
+  late String dateEnd = getDateFormat();
+  final LocalStorage storage = new LocalStorage('filter_scheduling');
   SchedulingFilterBloc(Widget ancestral, {super.key})
   {
     this.ancestral = ancestral as PaginationListBuilder;
@@ -47,6 +48,8 @@ class SchedulingFilterBloc extends StatelessWidget {
               Container(
                   padding: EdgeInsets.only(right: 5.0,left: 5.0),
                   child: Button('Filtrar', () async => {
+                            dateInit = await storage.getItem('text_data_inicial'),
+                            dateEnd = await storage.getItem('text_data_final'),
                             body.clear(),
                             body.addAll({'text_data_inicial':dateInit,'text_data_final':dateEnd,
                             'text_hora_inicial':'00:00','text_hora_final':'23:59'}),
@@ -79,8 +82,9 @@ class SchedulingFilterBloc extends StatelessWidget {
                             initialDate: DateTime.now(),
                             firstDate: DateTime(2000),
                             lastDate: DateTime(2030)
-                        ).then((value) =>{
+                        ).then((value) async =>{
                           dateInit = parseDateFormat(value as DateTime),
+                          await storage.setItem('text_data_inicial', dateInit),
                           context.read<SchedulingFilterCubit>().update()
                         });
                       },
@@ -107,8 +111,9 @@ class SchedulingFilterBloc extends StatelessWidget {
                             initialDate: DateTime.now(),
                             firstDate: DateTime(2000),
                             lastDate: DateTime(2030)
-                        ).then((value) =>{
+                        ).then((value) async =>{
                           dateEnd = parseDateFormat(value as DateTime),
+                          await storage.setItem('text_data_final', dateEnd),
                           context.read<SchedulingFilterCubit>().update()
                         });
                       },
