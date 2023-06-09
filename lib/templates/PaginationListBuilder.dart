@@ -74,7 +74,16 @@ class _PaginationListBuilder extends State<PaginationListBuilder>
               }
             else
               {
-                return Center(child: CircularProgressIndicator(),);
+                if(posts.length == 0)
+                  {
+                    return Center(child: Text("Não há registros"));
+                  }
+                else
+                  {
+                    return Center(child: CircularProgressIndicator(),);
+                  }
+
+
               }
       }),
         floatingActionButton: floatingActionButton
@@ -106,30 +115,44 @@ class _PaginationListBuilder extends State<PaginationListBuilder>
 
     var content = responseJson[this.locator];
 
+    count = responseJson['totalElements'];
+
     List newContent = [];
 
     newContent.addAll(posts);
     newContent.addAll(content);
 
-    setState(() {
-        posts = newContent;
-    });
+    if(count > 0)
+      {
+        setState(() {
+          posts = newContent;
+        });
+      }
+
+
   }
+
+  late int count = 0;
 
   late Map<String,String> filter = new HashMap();
 
   Future<void> _scrollListener() async{
     if(scrollController.position.pixels == scrollController.position.maxScrollExtent)
       {
-        setState(() {
-          isLoadingMore = true;
-        });
+
+            setState(() {
+              isLoadingMore = true;
+            });
+
+
         print("chamou a listagem");
         page = page + 1;
         await fetchPosts(this.filter);
-        setState(() {
-          isLoadingMore = false;
-        });
+
+          setState(() {
+            isLoadingMore = false;
+          });
+
       }
 
   }
@@ -137,9 +160,11 @@ class _PaginationListBuilder extends State<PaginationListBuilder>
   Future<void> refresh(Map<String, String> filter)
   async {
 
-    setState(() {
-      isLoadingMore = true;
-    });
+    if(count>0) {
+      setState(() {
+        isLoadingMore = true;
+      });
+    }
 
     page = 1;
     posts = [];
@@ -149,9 +174,11 @@ class _PaginationListBuilder extends State<PaginationListBuilder>
 
     await fetchPosts(filter);
 
-    setState(() {
-      isLoadingMore = false;
-    });
+    if(count>0) {
+      setState(() {
+        isLoadingMore = false;
+      });
+    }
 
   }
 
