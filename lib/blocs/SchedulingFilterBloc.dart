@@ -67,16 +67,23 @@ class SchedulingFilterBloc extends StatelessWidget {
   getStepOne(BuildContext context, BuildContext buildContext)
   {
     return Column(children: [
+      Padding(padding: EdgeInsets.only(bottom: 40),child: Center(child: Text("Filtro",style:TextStyle(fontSize: 40)),)),
       Table(
+        defaultColumnWidth: IntrinsicColumnWidth(),
         children: [
           TableRow(
               children: [
                 TableCell(child: Column(
-                  children: [ Text("Data Inicial: "+storage.getItem('text_data_inicial')),
+                  children: [ Text("Data Inicial: "+storage.getItem('text_data_inicial'),style: TextStyle(fontSize: 20)),
+                    ],
+                )),
+                TableCell(child: Column(
+                  children: [
                     IconButton(
+                      padding: EdgeInsets.only(bottom: 30),
                       icon: Icon(
                         Icons.edit,
-                        color: Colors.white,
+                        color: Colors.black,
                       ),
                       onPressed: () {
                         showDatePicker(
@@ -90,22 +97,29 @@ class SchedulingFilterBloc extends StatelessWidget {
                           context.read<SchedulingFilterCubit>().update()
                         });
                       },
-                    ),],
+                    )
+                  ],
                 ))
               ]
           )
         ],
       ),
       Table(
+        defaultColumnWidth: IntrinsicColumnWidth(),
         children: [
           TableRow(
               children: [
                 TableCell(child: Column(
-                  children: [ Text("Data Final: "+storage.getItem('text_data_final')),
+                  children: [ Text("Data Final: "+storage.getItem('text_data_final'),style: TextStyle(fontSize: 20)),
+                    ],
+                )),
+                TableCell(child: Column(
+                  children: [
                     IconButton(
+                      padding: EdgeInsets.only(bottom: 30),
                       icon: Icon(
                         Icons.edit,
-                        color: Colors.white,
+                        color: Colors.black,
                       ),
                       onPressed: () {
                         showDatePicker(
@@ -119,7 +133,8 @@ class SchedulingFilterBloc extends StatelessWidget {
                           context.read<SchedulingFilterCubit>().update()
                         });
                       },
-                    ),],
+                    )
+                  ],
                 ))
               ]
           )
