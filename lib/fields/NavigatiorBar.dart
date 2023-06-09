@@ -1,6 +1,7 @@
 import 'dart:collection';
 
 import 'package:flutter/material.dart';
+import 'package:localstorage/localstorage.dart';
 
 import '../blocs/FieldsProfile.dart';
 import '../filters/SchedulingFilter.dart';
@@ -121,7 +122,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       {
         Map<String,String> requestBody = new HashMap();
         String? idUser = await LoginService.getIdUser();
-        requestBody.addAll({'idUser':idUser.toString()});
+        final LocalStorage storage = new LocalStorage('filter_scheduling');
+        requestBody.addAll({'idUser':idUser.toString(),'text_data_inicial': await storage.getItem('text_data_inicial'),'text_data_final':await storage.getItem('text_data_final')});
         object = PaginationListBuilder("/api/scheduling/list/",
             FloatingActionButton(
               onPressed: () {
@@ -188,7 +190,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             ),
             onPressed: () {
               // do something
-              Navigator.push(context,MaterialPageRoute(builder: (context) =>  new SchedulingFilter(object)),);
+              final LocalStorage storage = new LocalStorage('filter_scheduling');
+              Navigator.push(context,MaterialPageRoute(builder: (context) =>  new SchedulingFilter(object,storage)),);
             },
           )
         ];

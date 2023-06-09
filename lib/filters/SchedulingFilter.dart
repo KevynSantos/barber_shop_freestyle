@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:localstorage/localstorage.dart';
 
 import '../blocs/SchedulingFilterBloc.dart';
 
@@ -7,17 +8,20 @@ class SchedulingFilter extends StatefulWidget
 {
 
   final Widget ancestral;
-  const SchedulingFilter(this.ancestral, {Key? key}) : super(key: key);
+  final LocalStorage storage;
+  const SchedulingFilter(this.ancestral, this.storage, {Key? key}) : super(key: key);
 
   @override
-  State<SchedulingFilter> createState() => _SchedulingFilterState(ancestral);
+  State<SchedulingFilter> createState() => _SchedulingFilterState(ancestral,storage);
 }
 
 class _SchedulingFilterState extends State<SchedulingFilter> {
   late Widget ancestral;
-  _SchedulingFilterState(Widget ancestral)
+  late LocalStorage storage;
+  _SchedulingFilterState(Widget ancestral,LocalStorage storage)
   {
     this.ancestral = ancestral;
+    this.storage = storage;
   }
 
   @override
@@ -46,7 +50,7 @@ class _SchedulingFilterState extends State<SchedulingFilter> {
                 // horizontal).
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SchedulingFilterBloc(this.ancestral)
+                  SchedulingFilterBloc(this.ancestral,this.storage)
                   ],
               ),
             )

@@ -25,10 +25,11 @@ class SchedulingFilterBloc extends StatelessWidget {
   late PaginationListBuilder ancestral;
   late String dateInit = getDateFormat();
   late String dateEnd = getDateFormat();
-  final LocalStorage storage = new LocalStorage('filter_scheduling');
-  SchedulingFilterBloc(Widget ancestral, {super.key})
+  late LocalStorage storage;
+  SchedulingFilterBloc(Widget ancestral, LocalStorage storage, {super.key})
   {
     this.ancestral = ancestral as PaginationListBuilder;
+    this.storage = storage;
   }
 
   getBottonsBloc(BuildContext context)
@@ -70,7 +71,7 @@ class SchedulingFilterBloc extends StatelessWidget {
           TableRow(
               children: [
                 TableCell(child: Column(
-                  children: [ Text("Data Inicial: "+dateInit),
+                  children: [ Text("Data Inicial: "+storage.getItem('text_data_inicial')),
                     IconButton(
                       icon: Icon(
                         Icons.edit,
@@ -99,7 +100,7 @@ class SchedulingFilterBloc extends StatelessWidget {
           TableRow(
               children: [
                 TableCell(child: Column(
-                  children: [ Text("Data Final: "+dateEnd),
+                  children: [ Text("Data Final: "+storage.getItem('text_data_final')),
                     IconButton(
                       icon: Icon(
                         Icons.edit,
