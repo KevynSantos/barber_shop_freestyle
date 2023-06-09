@@ -67,7 +67,7 @@ class SchedulingFilterBloc extends StatelessWidget {
   getStepOne(BuildContext context, BuildContext buildContext)
   {
     return Column(children: [
-      Padding(padding: EdgeInsets.only(bottom: 40),child: Center(child: Text("Filtro",style:TextStyle(fontSize: 40)),)),
+      Padding(padding: EdgeInsets.only(top: 150,bottom: 20),child: Center(child: Text("Filtro",style:TextStyle(fontSize: 40)),)),
       Table(
         defaultColumnWidth: IntrinsicColumnWidth(),
         children: [
