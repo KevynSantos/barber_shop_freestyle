@@ -24,9 +24,9 @@ class PaginationListBuilder extends StatefulWidget
     return _stateForRefreash;
   }
 
-  refrsh()
+  refrsh(Map<String,String> filter)
   {
-    _stateForRefreash.refresh();
+    _stateForRefreash.refresh(filter);
   }
   
 }
@@ -52,7 +52,7 @@ class _PaginationListBuilder extends State<PaginationListBuilder>
   {
     super.initState();
     scrollController.addListener(_scrollListener);
-    fetchPosts();
+    fetchPosts(this.filter);
   }
 
   @override
@@ -81,12 +81,13 @@ class _PaginationListBuilder extends State<PaginationListBuilder>
     );
   }
 
-  Future<void> fetchPosts() async{
+  Future<void> fetchPosts(Map<String, String> filter) async{
       //aqui fica a requisição
 
     Map<String,String> header = new HashMap();
 
     requestBody.addAll({'pageNumber':page.toString(),'pageSize':"10"});
+    requestBody.addAll(filter);
 
     final response = await http.doGet(config.host, url!, header, requestBody);
 
@@ -115,6 +116,8 @@ class _PaginationListBuilder extends State<PaginationListBuilder>
     });
   }
 
+  late Map<String,String> filter = new HashMap();
+
   Future<void> _scrollListener() async{
     if(scrollController.position.pixels == scrollController.position.maxScrollExtent)
       {
@@ -123,7 +126,7 @@ class _PaginationListBuilder extends State<PaginationListBuilder>
         });
         print("chamou a listagem");
         page = page + 1;
-        await fetchPosts();
+        await fetchPosts(this.filter);
         setState(() {
           isLoadingMore = false;
         });
@@ -131,8 +134,9 @@ class _PaginationListBuilder extends State<PaginationListBuilder>
 
   }
 
-  Future<void> refresh()
+  Future<void> refresh(Map<String, String> filter)
   async {
+
     setState(() {
       isLoadingMore = true;
     });
@@ -140,8 +144,10 @@ class _PaginationListBuilder extends State<PaginationListBuilder>
     page = 1;
     posts = [];
 
+    this.filter.clear();
+    this.filter = filter;
 
-    await fetchPosts();
+    await fetchPosts(filter);
 
     setState(() {
       isLoadingMore = false;

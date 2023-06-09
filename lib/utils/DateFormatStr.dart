@@ -8,3 +8,10 @@ getDateFormat()
 
   return  date;
 }
+
+parseDateFormat(DateTime date)
+{
+  final f = new DateFormat('dd/MM/yyyy');
+
+  return f.format(date);
+}

@@ -1,18 +1,27 @@
+import 'dart:collection';
+
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../fields/Button.dart';
 import '../templates/PaginationListBuilder.dart';
+import '../utils/DateFormatStr.dart';
+import '../templates/Calendar.dart' as c;
 
 class SchedulingFilterCubit extends Cubit<int>
 {
   SchedulingFilterCubit() : super(1);
 
-  void next() => emit(state + 1);
-  void previous() => emit(state - 1);
+  void update() => emit(state + 1);
   
   
 }
+
+String dateInit = getDateFormat();
+String dateEnd = getDateFormat();
+
+Map<String,String> body = new HashMap();
 
 class SchedulingFilterBloc extends StatelessWidget {
   late PaginationListBuilder ancestral;
@@ -21,7 +30,7 @@ class SchedulingFilterBloc extends StatelessWidget {
     this.ancestral = ancestral as PaginationListBuilder;
   }
 
-  getBottonsBloc(int count, BuildContext context)
+  getBottonsBloc(BuildContext context)
   {
     return
       Table(
@@ -30,38 +39,27 @@ class SchedulingFilterBloc extends StatelessWidget {
             TableRow(children: [
               Container(
                 padding: EdgeInsets.only(right: 5.0,left: 5.0),
-                child: Button(count==1?'Cancelar':'Voltar', () async => {
-                  if(count == 1)
-                    {
-                      Navigator.pop(context),
-                      ancestral.refrsh()
-                    }
-                  else
-                    {
-                      context.read<SchedulingFilterCubit>().previous()
-                    }
+                child: Button('Cancelar', () async => {
+                  Navigator.pop(context),
+                  ancestral.refrsh(body)
 
                 },Size(50, 40)).getElement(),),
               Container(
                   padding: EdgeInsets.only(right: 5.0,left: 5.0),
-                  child: Button(count==2?'Salvar':'Próximo', () async => {
-
-                    if(count == 2)
-                      {
-                        Navigator.pop(context),
-                        ancestral.refrsh()
-                      }
-                    else
-                      {
-                        context.read<SchedulingFilterCubit>().next()
+                  child: Button('Filtrar', () async => {
+                            body.clear(),
+                            body.addAll({'text_data_inicial':dateInit,'text_data_final':dateEnd,
+                            'text_hora_inicial':'00:00','text_hora_final':'23:59'}),
+                            Navigator.pop(context),
+                            ancestral.refrsh(body)
                       }
 
-                  },Size(50, 40)).getElement())
+                  ,Size(50, 40)).getElement())
             ]
             )]);
   }
 
-  getStepTwo(int count, BuildContext context)
+  getStepOne(BuildContext context, BuildContext buildContext)
   {
     return Column(children: [
       Table(
@@ -69,24 +67,63 @@ class SchedulingFilterBloc extends StatelessWidget {
           TableRow(
               children: [
                 TableCell(child: Column(
-                  children: [getBottonsBloc(count,context)],
+                  children: [ Text("Data Inicial: "+dateInit),
+                    IconButton(
+                      icon: Icon(
+                        Icons.edit,
+                        color: Colors.white,
+                      ),
+                      onPressed: () {
+                        showDatePicker(
+                            context: buildContext,
+                            initialDate: DateTime.now(),
+                            firstDate: DateTime(2000),
+                            lastDate: DateTime(2030)
+                        ).then((value) =>{
+                          dateInit = parseDateFormat(value as DateTime),
+                          context.read<SchedulingFilterCubit>().update()
+                        });
+                      },
+                    ),],
                 ))
               ]
           )
         ],
-      )
-    ],);
-  }
-
-  getStepOne(int count, BuildContext context)
-  {
-    return Column(children: [
+      ),
       Table(
         children: [
           TableRow(
               children: [
                 TableCell(child: Column(
-                  children: [getBottonsBloc(count,context)],
+                  children: [ Text("Data Final: "+dateEnd),
+                    IconButton(
+                      icon: Icon(
+                        Icons.edit,
+                        color: Colors.white,
+                      ),
+                      onPressed: () {
+                        showDatePicker(
+                            context: buildContext,
+                            initialDate: DateTime.now(),
+                            firstDate: DateTime(2000),
+                            lastDate: DateTime(2030)
+                        ).then((value) =>{
+                          dateEnd = parseDateFormat(value as DateTime),
+                          context.read<SchedulingFilterCubit>().update()
+                        });
+                      },
+                    ),],
+                ))
+              ]
+          )
+        ],
+      ),
+      Table(
+        children: [
+          TableRow(
+              children: [
+                TableCell(child: Column(
+                  children: [getBottonsBloc(context)],
                 ))
               ]
           )
@@ -96,22 +133,13 @@ class SchedulingFilterBloc extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext buildContext) {
     // TODO: implement build
     return BlocProvider(
         create: (_) => SchedulingFilterCubit(),
         child: BlocBuilder<SchedulingFilterCubit, int>(
             builder: (context, count) {
-              Widget bloc;
-
-              if(count == 2)
-                {
-                  bloc = getStepTwo(count,context);
-                }
-              else
-                {
-                  bloc = getStepOne(count,context);
-                }
+              Widget bloc = getStepOne(context,buildContext);
 
               return bloc;
             }

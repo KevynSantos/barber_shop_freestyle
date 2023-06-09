@@ -121,10 +121,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       {
         Map<String,String> requestBody = new HashMap();
         String? idUser = await LoginService.getIdUser();
-        String now = date.getDateFormat();
-        requestBody.addAll({'idUser':idUser.toString(),
-          'text_data_inicial':now,'text_data_final':now,
-        'text_hora_inicial':'','text_hora_final':''});
+        requestBody.addAll({'idUser':idUser.toString()});
         object = PaginationListBuilder("/api/scheduling/list/",
             FloatingActionButton(
               onPressed: () {
