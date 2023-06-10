@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:localstorage/localstorage.dart';
 
 import '../blocs/FieldsProfile.dart';
+import '../filters/ClientFilter.dart';
 import '../filters/SchedulingFilter.dart';
 import '../pages/NewScheduling.dart';
 import '../services/loginService.dart';
@@ -273,7 +274,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     return "Erro";
   }
 
-  getSourceByIndex(int index, Widget object)
+  getSourceByIndex(int index, Widget object,bool isClient)
   {
     if(index == 1)
       {
@@ -291,6 +292,22 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           )
         ];
       }
+    if((isClient==false) && index==3)
+    {
+      return <Widget>[
+        IconButton(
+          icon: Icon(
+            Icons.search,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            // do something
+            final LocalStorage storage = new LocalStorage('filter_clients');
+            Navigator.push(context,MaterialPageRoute(builder: (context) =>  new ClientFilter(object,storage)),);
+          },
+        )
+      ];
+    }
 
     return <Widget>[];
   }
@@ -361,7 +378,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         backgroundColor: Colors.black54,
         titleTextStyle: TextStyle(color: Colors.white),
           automaticallyImplyLeading: false,
-        actions: getSourceByIndex(_selectedIndex,object)
+        actions: getSourceByIndex(_selectedIndex,object,this.isClient)
       ),
       body: object,
       bottomNavigationBar: BottomNavigationBar(
