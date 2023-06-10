@@ -156,6 +156,10 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
   void _onItemTapped(int index) async {
 
+    setState(() {
+      object = Container();
+    });
+
     Widget item = getSimulationInformations(index,this.ancestral,this.isClient);
     // requisição
     if(index == 1)
