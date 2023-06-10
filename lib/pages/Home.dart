@@ -6,9 +6,10 @@ import '../fields/Button.dart';
 import '../fields/NavigatiorBar.dart';
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage(this.login, {Key? key}) : super(key: key);
+  const MyHomePage(this.login, this.isClient, {Key? key}) : super(key: key);
 
   final String? login;
+  final bool isClient;
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -20,14 +21,16 @@ class MyHomePage extends StatefulWidget {
   // always marked "final".
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState(login);
+  State<MyHomePage> createState() => _MyHomePageState(login,isClient);
 }
 
 class _MyHomePageState extends State<MyHomePage> {
     var loginUsed;
-  _MyHomePageState(String? login)
+    late bool isClient;
+  _MyHomePageState(String? login, bool isClient)
   {
     loginUsed = login;
+    this.isClient = isClient;
   }
 
   @override
@@ -39,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-        body: Container(child: NavigationBarCustom(),height: MediaQuery.of(context).size.height,width: MediaQuery.of(context).size.width)
+        body: Container(child: NavigationBarCustom(this.isClient),height: MediaQuery.of(context).size.height,width: MediaQuery.of(context).size.width)
     );
   }
 }

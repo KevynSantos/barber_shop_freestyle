@@ -43,7 +43,7 @@ class LoginService{
     return null;
   }
 
-  static setLoginInStorage(String login, String password, String idUser) async
+  static setLoginInStorage(String login, String password, String idUser, String profile) async
   {
     SecureStorage session = SecureStorage();
 
@@ -52,6 +52,8 @@ class LoginService{
     await session.set('password', password);
 
     await session.set('idUser', idUser);
+
+    await session.set('profile', profile);
   }
 
   static getIdUser() async
@@ -61,15 +63,26 @@ class LoginService{
     return await session.get("idUser");
   }
 
+  static isClient()
+  async {
+    SecureStorage session = SecureStorage();
+
+    var profile = await session.get("profile");
+
+    return profile.toString() == "CLIENTE";
+  }
+
   static goHome(BuildContext context) async
   {
     var loginData = await hasLoginInStorage();
+
+    bool isClientInLogin = await isClient();
 
     String? login = loginData?.remove("login");
 
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) =>  new MyHomePage(login)),
+      MaterialPageRoute(builder: (context) =>  new MyHomePage(login,isClientInLogin)),
     );
   }
 
@@ -79,6 +92,7 @@ class LoginService{
     await session.remove('login');
     await session.remove('password');
     await session.remove('idUser');
+    await session.remove('profile');
 
     Navigator.pushReplacement(
       context,
@@ -107,7 +121,8 @@ class LoginService{
         return false;
       }
     var idUser = responseJson['idUser'];
-    await setLoginInStorage(login,password,idUser.toString());
+    var profile = responseJson['profile'];
+    await setLoginInStorage(login,password,idUser.toString(),profile.toString());
     return true;
   }
 }

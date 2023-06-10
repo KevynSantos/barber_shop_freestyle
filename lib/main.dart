@@ -10,6 +10,7 @@ void main() {
 var existsLogin = false;
 var loginInStorage;
 var login = null;
+var isClient = null;
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -19,6 +20,10 @@ class MyApp extends StatelessWidget {
     loginInStorage = await LoginService.checkLogin();
     login = loginInStorage!=null?loginInStorage.remove('login'):null;
     loginInStorage!=null?existsLogin = true:existsLogin = false;
+    if(existsLogin)
+      {
+        isClient = await LoginService.isClient();
+      }
     return [''].join('');
   }
 
@@ -29,7 +34,7 @@ class MyApp extends StatelessWidget {
         future: checkLogin(), // a previously-obtained Future<String> or null
         builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
           return MaterialApp(
-              home: existsLogin?MyHomePage(login):Login(),
+              home: existsLogin?MyHomePage(login,isClient):Login(),
               debugShowCheckedModeBanner: false
           );
         }
