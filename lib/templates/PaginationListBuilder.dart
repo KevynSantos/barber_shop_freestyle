@@ -15,7 +15,7 @@ class PaginationListBuilder extends StatefulWidget
   final String? locator;
   final Map<String,String> requestBody;
   final Function callBackCard;
-  final FloatingActionButton floatingActionButton;
+  final Widget floatingActionButton;
   late _PaginationListBuilder _stateForRefreash;
 
   @override
@@ -37,7 +37,7 @@ class _PaginationListBuilder extends State<PaginationListBuilder>
   final String locator;
   final Map<String,String> requestBody;
   final Function callBackCard;
-  final FloatingActionButton floatingActionButton;
+  final Widget floatingActionButton;
   _PaginationListBuilder(this.url,this.floatingActionButton, this.locator, this.requestBody, this.callBackCard)
   {
 

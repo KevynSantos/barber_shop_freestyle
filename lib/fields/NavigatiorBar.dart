@@ -190,6 +190,36 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             }
         );
       }
+    else if((this.isClient == false) && index == 3)
+      {
+        Map<String,String> requestBody = new HashMap();
+        String? idUser = await LoginService.getIdUser();
+        final LocalStorage storage = new LocalStorage('filter_clients');
+        await storage.ready;
+        await storage.setItem('text_cpf','');
+        requestBody.addAll({'idUser':idUser.toString(),'text_cpf': await storage.getItem('text_cpf')});
+        object = PaginationListBuilder("/api/client/list/",
+            Visibility(
+              visible: false, // Set it to false
+              child: FloatingActionButton(onPressed: () {  },),
+            ),
+            "clientes",
+            requestBody,
+                (index, post) {
+              var nome = post['nome'];
+              var cpf = post['cpf'];
+              var dtNascimento = post['dtNascimento'];
+              var email = post['email'];
+              var telefone = post['telefone'];
+
+              return ListTile(
+                  title: Text("Nome: "+nome.toString(),maxLines: 1),
+                  subtitle: Text("Cpf: "+cpf.toString()+"\n"+"Dt. Nascimento: "
+                      +dtNascimento.toString()+"\n"+"E-mail: "+email.toString()+"\n"+"Telefone: "+telefone.toString(),maxLines: 5,)
+              );
+            }
+        );
+      }
     else {
       object = SingleChildScrollView(
         scrollDirection: Axis.vertical,
