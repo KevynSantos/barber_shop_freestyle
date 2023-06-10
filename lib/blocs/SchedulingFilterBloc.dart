@@ -44,6 +44,7 @@ class SchedulingFilterBloc extends StatelessWidget {
                 padding: EdgeInsets.only(right: 5.0,left: 5.0),
                 child: Button('Cancelar', () async => {
                   Navigator.pop(context),
+                  body.clear(),
                   ancestral.refrsh(body)
 
                 },Size(50, 40)).getElement(),),
