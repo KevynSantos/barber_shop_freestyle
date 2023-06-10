@@ -29,6 +29,7 @@ class ClientFilterBloc extends StatelessWidget {
   {
     this.ancestral = ancestral as PaginationListBuilder;
     this.storage = storage;
+    controller_cpf.text = this.storage.getItem('text_cpf');
   }
 
   getBottonsBloc(BuildContext context)
@@ -42,6 +43,7 @@ class ClientFilterBloc extends StatelessWidget {
                 padding: EdgeInsets.only(right: 5.0,left: 5.0),
                 child: Button('Cancelar', () async => {
                   Navigator.pop(context),
+                  body.clear(),
                   ancestral.refrsh(body)
 
                 },Size(50, 40)).getElement(),),
