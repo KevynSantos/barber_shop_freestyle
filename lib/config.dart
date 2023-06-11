@@ -1,1 +1,1 @@
-const host = "http://192.168.0.8:8080/BarberShopFreeStyle";
+const host = "http://vps9796.publiccloud.com.br:8080/BarberShopFreeStyle";
