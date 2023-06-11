@@ -36,13 +36,37 @@ class RegisterService
     if(code != 'SUCCESS')
     {
       var messageError = responseJson['message'];
-      toast.showMessageError(messageError);
+      toast.showMessageError(getMessageErrorRegisterUser(messageError));
       return false;
     }
 
     toast.showMessageSuccess('Cadastro realizado com sucesso');
     return true;
   }
+
+  static getMessageErrorRegisterUser(String message)
+  {
+    if(message.contains('TELEPHONE_INVALID'))
+      {
+        return "Telefone Inválido";
+      }
+
+    if(message.contains('CPF_INVALID'))
+      {
+        return "CPF Inválido";
+      }
+    if(message.contains('EMAIL_INVALID'))
+      {
+        return "E-mail inválido";
+      }
+    if(message.contains('LOGIN_EXIST'))
+      {
+        return "Login/E-mail existente no sistema";
+      }
+
+    return message;
+  }
+
 
   static confirmCodeEmail(RegisterDto dto,BuildContext context)
   async {
