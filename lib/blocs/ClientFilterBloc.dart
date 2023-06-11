@@ -29,7 +29,6 @@ class ClientFilterBloc extends StatelessWidget {
   {
     this.ancestral = ancestral as PaginationListBuilder;
     this.storage = storage;
-    controller_cpf.text = this.storage.getItem('text_cpf');
   }
 
   getBottonsBloc(BuildContext context)
