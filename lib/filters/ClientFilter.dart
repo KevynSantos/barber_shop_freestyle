@@ -17,11 +17,9 @@ class ClientFilter extends StatefulWidget
 
 class _ClientFilterState extends State<ClientFilter> {
   late Widget ancestral;
-  late LocalStorage storage;
   _ClientFilterState(Widget ancestral,LocalStorage storage)
   {
     this.ancestral = ancestral;
-    this.storage = storage;
   }
 
   @override
@@ -33,7 +31,7 @@ class _ClientFilterState extends State<ClientFilter> {
             child: Center(
               // Center is a layout widget. It takes a single child and positions it
               // in the middle of the parent.
-                child: ClientFilterBloc(this.ancestral,this.storage)
+                child: ClientFilterBloc(this.ancestral)
             )
         ),
         resizeToAvoidBottomInset: false

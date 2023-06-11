@@ -43,6 +43,7 @@ dependencies:
   cpf_cnpj_validator: 2.0.0-nullsafety
   intl: ^0.18.1
   localstorage: ^4.0.1+2
+  flutter_easyloading: ^3.0.5
 
 dev_dependencies:
   flutter_test:

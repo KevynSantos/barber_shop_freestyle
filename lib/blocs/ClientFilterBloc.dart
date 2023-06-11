@@ -4,9 +4,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:localstorage/localstorage.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 import '../fields/Button.dart';
-import '../fields/FieldTextEdit.dart';
 import '../templates/PaginationListBuilder.dart';
 
 class ClientFilterCubit extends Cubit<int>
@@ -22,12 +22,12 @@ Map<String,String> body = new HashMap();
 
 class ClientFilterBloc extends StatelessWidget {
   late PaginationListBuilder ancestral;
+  final maskCpf = MaskTextInputFormatter(mask: "###.###.###-##", filter: {"#": RegExp(r'[0-9]')});
   late LocalStorage storage;
-  TextEditingController controller_cpf = TextEditingController();
-  ClientFilterBloc(Widget ancestral, LocalStorage storage, {super.key})
+
+  ClientFilterBloc(Widget ancestral, {super.key})
   {
     this.ancestral = ancestral as PaginationListBuilder;
-    this.storage = storage;
   }
 
   getBottonsBloc(BuildContext context)
@@ -48,8 +48,10 @@ class ClientFilterBloc extends StatelessWidget {
               Container(
                   padding: EdgeInsets.only(right: 5.0,left: 5.0),
                   child: Button('Filtrar', () async => {
+                    storage = new LocalStorage("filter_client"),
+                    await storage.ready,
                     body.clear(),
-                    body.addAll({'text_cpf':controller_cpf.text.toString()}),
+                    body.addAll({'text_cpf':await storage.getItem('text_cpf')}),
                     Navigator.pop(context),
                     ancestral.refrsh(body)
                     //context.read<ClientFilterCubit>().update()
@@ -75,7 +77,13 @@ class ClientFilterBloc extends StatelessWidget {
                 )),
                 TableCell(child: Column(
                   children: [
-                    FieldTextEdit(controller_cpf)
+                    TextField(inputFormatters: [maskCpf],onChanged: (String value) async =>{
+
+                      this.storage = new LocalStorage("filter_client"),
+                      await this.storage.ready,
+                      await this.storage.setItem('text_cpf', value)
+
+                    },)
                   ],
                 ))
               ]

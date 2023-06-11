@@ -2,6 +2,7 @@ import 'package:barber_shop_freestyle/pages/Home.dart';
 import 'package:barber_shop_freestyle/pages/Login.dart';
 import 'package:barber_shop_freestyle/services/loginService.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 void main() {
   runApp(const MyApp());
@@ -35,7 +36,8 @@ class MyApp extends StatelessWidget {
         builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
           return MaterialApp(
               home: existsLogin?MyHomePage(login,isClient):Login(),
-              debugShowCheckedModeBanner: false
+              debugShowCheckedModeBanner: false,
+              builder: EasyLoading.init(),
           );
         }
 
