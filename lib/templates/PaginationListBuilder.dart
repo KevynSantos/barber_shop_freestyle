@@ -46,6 +46,7 @@ class _PaginationListBuilder extends State<PaginationListBuilder>
   bool isLoadingMore = false;
   List posts = [];
   int page = 1;
+  late bool isEmpty = false;
 
   @override
   void initState()
@@ -65,6 +66,10 @@ class _PaginationListBuilder extends State<PaginationListBuilder>
           controller: scrollController,
           itemCount: isLoadingMore ? posts.length + 1 : posts.length,
           itemBuilder: (context,index){
+            if(this.isEmpty == true)
+            {
+              return Center(child: Text("Não há registros"));
+            }
             if(index < posts.length)
               {
                 var post = posts[index];
@@ -74,16 +79,7 @@ class _PaginationListBuilder extends State<PaginationListBuilder>
               }
             else
               {
-                if(posts.length == 0)
-                  {
-                    return Center(child: Text("Não há registros"));
-                  }
-                else
-                  {
-                    return Center(child: CircularProgressIndicator(),);
-                  }
-
-
+                return Center(child: CircularProgressIndicator(),);
               }
       }),
         floatingActionButton: floatingActionButton
@@ -122,13 +118,19 @@ class _PaginationListBuilder extends State<PaginationListBuilder>
     newContent.addAll(posts);
     newContent.addAll(content);
 
-    if(count > 0)
+    if(count == 0)
       {
-        setState(() {
-          posts = newContent;
-        });
+        this.isEmpty = true;
+        newContent = [{'isEmpty':'isEmpty'}];
+      }
+    else
+      {
+        this.isEmpty = false;
       }
 
+    setState(() {
+      posts = newContent;
+    });
 
   }
 
