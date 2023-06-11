@@ -22,7 +22,6 @@ Map<String,String> body = new HashMap();
 
 class ClientFilterBloc extends StatelessWidget {
   late PaginationListBuilder ancestral;
-  late String cpf = '';
   late LocalStorage storage;
   TextEditingController controller_cpf = TextEditingController();
   ClientFilterBloc(Widget ancestral, LocalStorage storage, {super.key})
@@ -49,10 +48,8 @@ class ClientFilterBloc extends StatelessWidget {
               Container(
                   padding: EdgeInsets.only(right: 5.0,left: 5.0),
                   child: Button('Filtrar', () async => {
-                    await storage.setItem('text_cpf', controller_cpf.text.toString()),
-                    cpf = await storage.getItem('text_cpf'),
                     body.clear(),
-                    body.addAll({'text_cpf':cpf}),
+                    body.addAll({'text_cpf':controller_cpf.text.toString()}),
                     Navigator.pop(context),
                     ancestral.refrsh(body)
                     //context.read<ClientFilterCubit>().update()
