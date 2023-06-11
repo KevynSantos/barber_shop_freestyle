@@ -65,7 +65,7 @@ class ClientFilterBloc extends StatelessWidget {
   getStepOne(BuildContext context, BuildContext buildContext)
   {
     return Column(children: [
-      Padding(padding: EdgeInsets.only(top: 150,bottom: 20),child: Center(child: Text("Filtro",style:TextStyle(fontSize: 40)),)),
+      Padding(padding: EdgeInsets.only(top: 150,bottom: 20),child: Center(child: Text("Filtro de Cliente",style:TextStyle(fontSize: 30)),)),
       Table(
         defaultColumnWidth: IntrinsicColumnWidth(),
         children: [
@@ -77,13 +77,28 @@ class ClientFilterBloc extends StatelessWidget {
                 )),
                 TableCell(child: Column(
                   children: [
-                    TextField(inputFormatters: [maskCpf],onChanged: (String value) async =>{
+                  SizedBox(
+                    child: TextField(inputFormatters: [maskCpf],onChanged: (String value) async =>{
 
                       this.storage = new LocalStorage("filter_client"),
                       await this.storage.ready,
                       await this.storage.setItem('text_cpf', value)
 
-                    },)
+                    },
+                        style: TextStyle(color: Colors.black),
+                        obscureText: false,
+                        decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.black), // change color you want...
+                            ),
+                            labelStyle: TextStyle(fontSize: 13, backgroundColor: Colors.black,color: Colors.black),
+                            hintStyle: TextStyle(backgroundColor: Colors.black,color: Colors.black),
+                            focusedBorder: const OutlineInputBorder(
+                              borderSide: const BorderSide(color: Colors.black),
+                            )
+                        )
+                    ),
+                  width: 320.0,)
                   ],
                 ))
               ]
