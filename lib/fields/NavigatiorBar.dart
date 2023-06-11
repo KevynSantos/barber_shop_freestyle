@@ -174,12 +174,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         await storage.setItem('text_data_final',now);
         requestBody.addAll({'idUser':idUser.toString(),'text_data_inicial': await storage.getItem('text_data_inicial'),'text_data_final':await storage.getItem('text_data_final')});
         object = PaginationListBuilder("/api/scheduling/list/",
-            FloatingActionButton(
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) =>  new NewSchedulingPage()),);
-              },
-              backgroundColor: Colors.orange,
-              child: const Icon(Icons.add),
+            Visibility(
+              visible: false, // Set it to false
+              child: FloatingActionButton(onPressed: () {  },),
             ),
             "agendamentos",
             requestBody,
