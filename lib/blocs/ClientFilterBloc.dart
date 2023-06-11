@@ -24,6 +24,7 @@ class ClientFilterBloc extends StatelessWidget {
   late PaginationListBuilder ancestral;
   final maskCpf = MaskTextInputFormatter(mask: "###.###.###-##", filter: {"#": RegExp(r'[0-9]')});
   late LocalStorage storage;
+  late TextEditingController controller = TextEditingController();
 
   ClientFilterBloc(Widget ancestral, {super.key})
   {
@@ -51,7 +52,7 @@ class ClientFilterBloc extends StatelessWidget {
                     storage = new LocalStorage("filter_client"),
                     await storage.ready,
                     body.clear(),
-                    body.addAll({'text_cpf':await storage.getItem('text_cpf')}),
+                    body.addAll({'text_cpf':controller.text==''?'':await storage.getItem('text_cpf')}),
                     Navigator.pop(context),
                     ancestral.refrsh(body)
                     //context.read<ClientFilterCubit>().update()
@@ -95,8 +96,9 @@ class ClientFilterBloc extends StatelessWidget {
                             hintStyle: TextStyle(backgroundColor: Colors.black,color: Colors.black),
                             focusedBorder: const OutlineInputBorder(
                               borderSide: const BorderSide(color: Colors.black),
-                            )
-                        )
+                            ),
+                        ),
+                        controller: controller
                     ),
                   width: 320.0,)
                   ],
