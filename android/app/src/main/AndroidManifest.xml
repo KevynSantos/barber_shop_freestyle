@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.barbershopfreestyle.barber_shop_freestyle">
+    <uses-permission android:name="android.permission.INTERNET" />
    <application
         android:label="barber_shop_freestyle"
         android:name="${applicationName}"
