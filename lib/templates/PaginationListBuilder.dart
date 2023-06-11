@@ -47,6 +47,7 @@ class _PaginationListBuilder extends State<PaginationListBuilder>
   List posts = [];
   int page = 1;
   late bool isEmpty = false;
+  late bool confirmIsEmpty = false;
 
   @override
   void initState()
@@ -68,7 +69,14 @@ class _PaginationListBuilder extends State<PaginationListBuilder>
           itemBuilder: (context,index){
             if(this.isEmpty == true)
             {
-              return Center(child: Text("Não há registros"));
+              if(this.confirmIsEmpty == false)
+                {
+                  this.confirmIsEmpty = true;
+                  return Center(child: Text("Não há registros"));
+                }
+              else {
+                return Center();
+              }
             }
             if(index < posts.length)
               {
@@ -117,6 +125,8 @@ class _PaginationListBuilder extends State<PaginationListBuilder>
 
     newContent.addAll(posts);
     newContent.addAll(content);
+
+    this.confirmIsEmpty = false;
 
     if(count == 0)
       {
