@@ -24,7 +24,7 @@ class ClientFilterBloc extends StatelessWidget {
   late PaginationListBuilder ancestral;
   late String cpf = '';
   late LocalStorage storage;
-  TextEditingController controller_cpf = new TextEditingController();
+  TextEditingController controller_cpf = TextEditingController();
   ClientFilterBloc(Widget ancestral, LocalStorage storage, {super.key})
   {
     this.ancestral = ancestral as PaginationListBuilder;
