@@ -57,7 +57,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
               )
           ),
-        resizeToAvoidBottomInset: false
+        resizeToAvoidBottomInset: true
     );
   }
 }
